@@ -6,7 +6,8 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      First Branch Commit
+      <Nav />
+      {routes}
     </div>
   );
 }
