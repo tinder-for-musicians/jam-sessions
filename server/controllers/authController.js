@@ -34,7 +34,6 @@ module.exports = {
         if (!isAuthenticated) {
             return res.status(403).send('Incorrect password');
         }
-        const {user_id, first_name, last_name, username} = existingUser;
-        return res.status(200).send(user_id, first_name, last_name, username);
+        return res.status(200).send(existingUser);
     }
 }
