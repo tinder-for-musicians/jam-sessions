@@ -1,5 +1,3 @@
-
-
 //  const Landing =() => {
 //     const [username, setUsername] = useState('');
 //     const [email, setEmali]=useState('');
@@ -144,8 +142,3 @@ class Landing extends Component {
 const mapStateToProps = reduxState => reduxState;
 
 export default connect(mapStateToProps, {getUser})(Landing);
-
-
-
- 
-
