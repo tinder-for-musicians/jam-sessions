@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./Profile.scss";
-
+import Upload from "../Firebase/Upload";
 
 const Profile = () => {
 
