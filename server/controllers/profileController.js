@@ -5,7 +5,7 @@ module.exports = {
 
         db.profile.get_profile([id])
             .then(response => {
-                res.status(200).send(response);
+                res.status(200).send(response[0]);
             })
             .catch(err => res.status(500).send(err));
     }
