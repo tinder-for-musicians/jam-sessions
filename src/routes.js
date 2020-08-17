@@ -10,8 +10,8 @@ import Matches from './Components/Matches/Matches';
 export default (
     <Switch>
         <Route exact path ='/' component={Landing} />
-        <Route path = '/home' component={Home}/>
         <Route path ='/matches' component={Matches} />
-        <Route path ='/profile' component={Profile} />   
+        <Route path ='/profile' component={Profile} />
+        <Route path = '/home' component={Home}/>
     </Switch>
 )

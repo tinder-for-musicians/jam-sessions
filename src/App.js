@@ -1,26 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Nav from './Components/Nav/Nav';
 import routes from './routes';
 import './App.scss';
 import {withRouter} from "react-router-dom";
 
-class App extends Component {
-  state = {  }
-  
-  render() { 
-    return ( 
-      <div className="App">
-        {/* {this.props.location.pathname === "/" ? 
-        null:
-        (<Nav />)
-        }
-        {routes} */}
-        <Nav/>
+function App(props) {
+  return (
+    <div className="App">
+     {props.location.pathname === "/" || props.location.pathname === "/register" ?
+        null 
+        : (
+          <Nav history={props.history}/>
+        )}
         {routes}
     </div>
      );
   }
-}
+
  
 export default withRouter(App);
 
