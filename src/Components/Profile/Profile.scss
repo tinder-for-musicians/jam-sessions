@@ -5,10 +5,14 @@
     align-items: center;
     flex-wrap: wrap;
     background-color: #EFE2BA;
+    // margin: 10px;
+    height: 100vh;
 }
 
 .profile-img-wrapper {
     display: flex;
+    background-color: #C5CBE3;
+    margin: 10px;
 }
 
 .profile-img-div {
@@ -38,5 +42,5 @@
     margin: 10px;
     display: flex;
     flex-direction: column;
-    
+    background-color: #C5CBE3;
 }

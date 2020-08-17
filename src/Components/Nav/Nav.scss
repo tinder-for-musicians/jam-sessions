@@ -1,13 +1,7 @@
 nav {
     background-color: #4056A1;
     display: flex;
-    justify-content: space-between;
-
-    .nav-links p {
-        display: flex;
-        // justify-content: space-around;
-        margin: 5px;
-    }
+    height: 130px;
 
     .nav-links {
         margin: 5px;
@@ -15,18 +9,28 @@ nav {
         align-items: center;
         p {
             color: #F13C20;
+            display: flex;
+            margin: 5px;
+            font-size: 23px;
+            padding: 15px;
         }
     }
 
     .nav-photo-div {
         display: flex;
         justify-content: center;
+        img {
+            display: flex;
+            justify-content: center;
+            border-radius: 50%;
+            padding: 5px 15px;
+            width: 120px;
+        }
     }
 
-    .nav-user-img {
-        display: flex;
-        justify-content: center;
-    }
+}
 
+a {
+    text-decoration: none;
 }
 
