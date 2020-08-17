@@ -1,0 +1,103 @@
+$mobile-sizeA: 320px;
+//need @media for 320 - cuts off logo at top also cuts off on sides at 280(galaxy fold)
+$mobile-sizeB: 480px;
+$tablet-size: 768px;
+$desktop-size: 1024px;
+
+$color1: #D79922;
+$color2: #EFE2BA;
+$color3: #F13C20;
+$color4: #4056A1;
+$color5: #C5CBE3;
+
+.landing-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://www.districtor1.org/vimages/shared/vnews/stories/552576d6b3998/1_springconcert-feature.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .authentication-info {
+    color: $color4;
+    background-color: rgba(255,255,255,0.9);
+    box-shadow: 0 0 20px 20px rgba(255,255,255,0.9);
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    bottom: 140px;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    height: 450px;
+    width: 400px;
+  }
+  
+  .logo{
+    position: relative;
+    top: 40px;
+    font-weight: bold;
+    font-size: 50px;
+    background: -webkit-linear-gradient($color3, $color1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   color: $color1;
+  }
+  
+  .authentication-info input {
+    height: 30px;
+    width: 300px;
+    background-color: $color5;
+    color: #2E3047;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+    border-radius: 2px;
+  }
+  
+  .authentication-info button {
+    height: 30px;
+    width: 120px;
+    color: white;
+    background-color: $color4;
+    font-size: 20px;
+    box-shadow: none;
+    border-radius: 2px;
+    border: none;
+  }
+  
+  .authentication-info button:hover {
+    background-color: $color2;
+    color: #2E3047;
+  }
+  
+  .authentication-info button:active {
+    background-color: transparent;
+    color: #2E3047;
+  }
+  
+  .authentication-info span {
+    margin-top: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #2E3047;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: white;
+  }
