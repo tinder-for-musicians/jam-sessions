@@ -1,0 +1,32 @@
+nav {
+    background-color: #4056A1;
+    display: flex;
+    justify-content: space-between;
+
+    .nav-links p {
+        display: flex;
+        // justify-content: space-around;
+        margin: 5px;
+    }
+
+    .nav-links {
+        margin: 5px;
+        display: flex;
+        align-items: center;
+        p {
+            color: #F13C20;
+        }
+    }
+
+    .nav-photo-div {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-user-img {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
