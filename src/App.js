@@ -1,12 +1,12 @@
 import React from 'react';
-import Nav from './Components/';
+// import Nav from './Components/Nav/Nav';
 import routes from './routes';
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <Nav />
+      {/* <Nav /> */}
       {routes}
     </div>
   );
