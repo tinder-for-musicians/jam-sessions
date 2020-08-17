@@ -6,7 +6,7 @@ module.exports = {
 
         const db = req.app.get('db');
 
-        const results = await db.auth.get_user([email, username])
+        const results = await db.auth.get_user([email, username]);
         const existingUser = results[0];
         if (existingUser) {
             return res.status(401).send('A user with that username or email is already taken.');
