@@ -13,12 +13,13 @@ VALUES
 ('piano/keyboard')
 ;
 
-INSERT INTO proficiency
-(proficiency_level)
+INSERT INTO levels
+(level_name)
 VALUES
-('beginner'),
-('intermediate'),
-('advanced')
+('student'),
+('hobbyist'),
+('amateur'),
+('professional')
 ;
 
 INSERT INTO experience

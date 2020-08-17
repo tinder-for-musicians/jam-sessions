@@ -3,9 +3,9 @@ CREATE TABLE instrument (
 	instrument_name VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE proficiency (
-	proficiency_id SERIAL PRIMARY KEY,
-	proficiency_level TEXT UNIQUE NOT NULL
+CREATE TABLE levels (
+	level_id SERIAL PRIMARY KEY,
+	level_name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE experience (
@@ -35,7 +35,7 @@ CREATE TABLE message (
 CREATE TABLE profile (
 	user_id INTEGER REFERENCES users(user_id),
 	instrument_id INTEGER REFERENCES instrument(instrument_id),
-	proficiency_id INTEGER REFERENCES proficiency(proficiency_id),
+	level_id INTEGER REFERENCES levels(level_id),
 	experience_id INTEGER REFERENCES experience(experience_id),
 	PRIMARY KEY(user_id, instrument_id)
 );
