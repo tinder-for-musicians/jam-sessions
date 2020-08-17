@@ -8,8 +8,8 @@ class Nav extends Component {
         return ( 
             <div>
                 <nav>
-                    <div>
-                        <img src="" alt="logo"/>
+                    <div id="logo-div">
+                        <img src="https://via.placeholder.com/150" alt="logo"/>
                     </div>
                     <div className="nav-links">
                         <Link to="/home"><p>Home</p></Link>
