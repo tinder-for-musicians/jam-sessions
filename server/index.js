@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const io = require('socket.io')();
 const authCtrl = require('./controllers/authController');
+const profileCtrl = require('./controllers/profileController');
 
 const {SERVER_PORT, IO_PORT, CONNECTION_STRING} = process.env;
 
@@ -31,6 +32,7 @@ io.on('connection', (client) => {
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
+app.get('/api/profile/:id', profileCtrl.getProfile);
 
 io.listen(IO_PORT);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
