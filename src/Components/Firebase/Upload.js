@@ -10,10 +10,9 @@ class Upload extends Component {
       url: '',
       progress: 0
     }
-    this.handleChange = this
-      .handleChange
-      .bind(this);
-      this.handleUpload = this.handleUpload.bind(this);
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
   handleChange = e => {
@@ -49,21 +48,12 @@ class Upload extends Component {
 
 
   render() {
-    const style = {
-      height: '50vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center'
-    };
+
     return (
-      <div style={style}>
-      <progress value={this.state.progress} max="100"/>
-      <br/>
+      <div >
+
         <input type="file" onChange={this.handleChange}/>
         <button onClick={this.handleUpload}>Upload</button>
-        <br/>
-        <img src={this.state.url || 'http://via.placeholder.com/400x300'} alt="Uploaded images" height="auto" width="250"/>
       </div>
     )
   }

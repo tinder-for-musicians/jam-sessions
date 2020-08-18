@@ -12,6 +12,6 @@ export default (
         <Route exact path ='/' component={Landing} />
         <Route path ='/matches' component={Matches} />
         <Route path ='/profile' component={Profile} />
-        <Route path = '/home' component={Home}/>
+        <Route path = '/dash' component={Home}/>
     </Switch>
 )

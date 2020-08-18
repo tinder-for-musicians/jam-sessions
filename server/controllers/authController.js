@@ -35,5 +35,11 @@ module.exports = {
             return res.status(403).send('Incorrect password');
         }
         return res.status(200).send(existingUser);
-    }
+    },
+
+    logout: (req, res) => {
+        req.session.destroy();
+
+        res.sendStatus(200);
+    },
 }

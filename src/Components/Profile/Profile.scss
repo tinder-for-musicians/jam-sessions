@@ -1,7 +1,6 @@
 .profile-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     background-color: #EFE2BA;
@@ -42,5 +41,9 @@
     margin: 10px;
     display: flex;
     flex-direction: column;
+    background-color: #C5CBE3;
+}
+
+.bio-div {
     background-color: #C5CBE3;
 }
