@@ -15,6 +15,16 @@ module.exports = {
     //     const {}
     // },
 
+    updateName: async (req, res) => {
+        const {id} = req.params;
+        const {first_name, last_name} = req.body;
+        const db = req.app.get('db');
+
+        db.profile.update_name([id, first_name, last_name])
+            .then(() => res.sendStatus(202))
+            .catch(err => res.status(400).send(err));
+    },
+
     updateBio: async (req, res) => {
         const {id} = req.params;
         const {bio} = req.body;
