@@ -1,15 +1,22 @@
-
 import React, {Component} from 'react';
+import "./Home.scss";
+import Search from "./Search";
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
+
     render() { 
         return ( 
-            <div>
-                <p>Home</p>
+            <div className="home-wrapper">
+                <div className="home-wrapper2">
+                    <div>
+                        <Search />
+                    </div>
+                    <div>
+                        <section>
+                            Musician Profile
+                        </section>
+                    </div>
+                </div>
             </div>
          );
     }
