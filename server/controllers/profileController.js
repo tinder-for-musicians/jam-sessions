@@ -57,6 +57,17 @@ module.exports = {
             .catch(err => res.status(400).send(err));
     },
 
+    deleteInstrument: async (req, res) => {
+        const {id, instrument} = req.body;
+        const db = req.app.get('db');
+        
+        db.profile.delete_instrument([id, instrument])
+            .then(() => {
+                res.sendStatus(202);
+            })
+            .catch(err => res.status(400).send(err));
+    },
+
     getSearchProfiles: async (req, res) => {
         
     }
