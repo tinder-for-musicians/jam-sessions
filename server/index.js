@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const io = require('socket.io')();
 const authCtrl = require('./controllers/authController');
+const instrCtrl = require('./controllers/instrController');
 const profileCtrl = require('./controllers/profileController');
 
 const {SERVER_PORT, IO_PORT, CONNECTION_STRING} = process.env;
@@ -32,6 +33,8 @@ io.on('connection', (client) => {
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
+app.get('/auth/logout', authCtrl.logout);
+app.get('/api/instruments', instrCtrl.getInstruments);
 app.get('/api/profile/:id', profileCtrl.getProfile);
 
 io.listen(IO_PORT);

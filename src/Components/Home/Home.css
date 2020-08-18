@@ -1,0 +1,20 @@
+.home-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background-color: #EFE2BA;
+  height: 100vh;
+}
+
+.home-wrapper2 {
+  background-color: #C5CBE3;
+  height: 50%;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+/*# sourceMappingURL=Home.css.map */
