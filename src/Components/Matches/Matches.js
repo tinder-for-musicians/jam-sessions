@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./Matches.scss";
 
 class Matches extends Component {
     constructor(props) {
@@ -7,7 +8,11 @@ class Matches extends Component {
     }
     render() { 
         return ( 
-            <div>Matches</div>
+            <div className="matches-wrapper">
+                <div className="mapped-matches">
+                    <p>List of mapped matches</p>
+                </div>
+            </div>
          );
     }
 }

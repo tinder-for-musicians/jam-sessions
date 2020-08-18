@@ -1,8 +1,10 @@
+
 import React from 'react';
 import Nav from './Components/Nav/Nav';
 import routes from './routes';
 import './App.scss';
 import {withRouter} from "react-router-dom";
+import 'semantic-ui-css/semantic.min.css'
 
 function App(props) {
   return (
