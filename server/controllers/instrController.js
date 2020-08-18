@@ -16,5 +16,6 @@ module.exports = {
                 res.status(200).send(response[0]);
             })
             .catch(() => res.sendStatus(500));
-    }
+    },
+    
 }
