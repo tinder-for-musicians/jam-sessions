@@ -37,6 +37,10 @@ app.get('/auth/logout', authCtrl.logout);
 // app.get('/api/instruments', instrCtrl.getInstruments);
 app.get('/api/instruments', instrCtrl.getAttributes);
 app.get('/api/profile/:id', profileCtrl.getProfile);
+app.post('/api/profile/instrument/:id', profileCtrl.addInstrument);
+app.put('/api/profile/bio/:id', profileCtrl.updateBio);
+app.put('/api/profile/location/:id', profileCtrl.updateLocation);
+app.put('/api/profile/instrument/:id', profileCtrl.updateInstrument);
 
 io.listen(IO_PORT);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
