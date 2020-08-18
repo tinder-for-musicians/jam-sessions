@@ -34,7 +34,8 @@ io.on('connection', (client) => {
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
-app.get('/api/instruments', instrCtrl.getInstruments);
+// app.get('/api/instruments', instrCtrl.getInstruments);
+app.get('/api/instruments', instrCtrl.getAttributes);
 app.get('/api/profile/:id', profileCtrl.getProfile);
 
 io.listen(IO_PORT);
