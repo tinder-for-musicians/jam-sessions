@@ -18,8 +18,10 @@ class Home extends Component {
                     </div>
                 </div>
             </div>
-         );
+        )
     }
 }
- 
-export default Home;
+
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps)(Home);
