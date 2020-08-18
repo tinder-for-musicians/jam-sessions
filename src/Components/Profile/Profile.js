@@ -14,6 +14,7 @@ const Profile = () => {
                     <img src="https://via.placeholder.com/150" alt="profile image"/>
                     {/* This button should link to upload functionality */}
                     <button className="profile-btn">Add picture</button> 
+                    <Upload/>
                 </div>
                 <div className="profile-user-info">
                     <p>Username:</p>

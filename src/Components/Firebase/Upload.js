@@ -10,10 +10,9 @@ class Upload extends Component {
       url: '',
       progress: 0
     }
-    this.handleChange = this
-      .handleChange
-      .bind(this);
-      this.handleUpload = this.handleUpload.bind(this);
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
   handleChange = e => {
