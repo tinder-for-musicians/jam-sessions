@@ -11,6 +11,14 @@ module.exports = {
 
     updateProfilePic: async (req, res) => {
         const {id} = req.params;
+        const {imageAsUrl} = req.body;
+        const db = req.app.get('db');
+
+        await db.profile.update_profile_pic([id, imageAsUrl])
+            .then(() => {
+                res.sendStatus(202);
+            })
+            .catch(err => res.status(400).send(err));
     },
 
     updateName: async (req, res) => {
