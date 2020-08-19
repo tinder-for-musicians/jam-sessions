@@ -1,7 +1,10 @@
 SELECT
-    location
-    , profile_pic
-    , bio
+    u.username
+    , u.first_name
+    , u.last_name
+    , u.location
+    , u.profile_pic
+    , u.bio
     , ARRAY_AGG(
         ARRAY[i.instrument_name, e.experience_years, l.level_name]
     ) AS user_instruments
