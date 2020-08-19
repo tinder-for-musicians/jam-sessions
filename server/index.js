@@ -38,6 +38,7 @@ app.get('/auth/logout', authCtrl.logout);
 app.get('/api/instruments', instrCtrl.getAttributes);
 app.get('/api/profile/:id', profileCtrl.getProfile);
 app.post('/api/profile/instrument/:id', profileCtrl.addInstrument);
+app.put('/api/profile/picture/:id', profileCtrl.updateProfilePic);
 app.put('/api/profile/name/:id', profileCtrl.updateName);
 app.put('/api/profile/bio/:id', profileCtrl.updateBio);
 app.put('/api/profile/location/:id', profileCtrl.updateLocation);
