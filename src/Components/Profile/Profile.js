@@ -1,21 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Profile.scss";
 import Bio from "./Bio";
 import ProfileCard from "./ProfileCard";
-import { Button } from 'semantic-ui-react'
+import { Button, PlaceholderParagraph } from 'semantic-ui-react'
 import Upload from '../Firebase/Upload';
 import { storage } from "../Firebase/index";
+import {connect} from 'react-redux';
+import {getUser} from '../../redux/reducer';
+import axios from 'axios';
 
-const Profile = () => {
+const Profile = (props) => {
 
     const [username, setUsername] = useState("");
-    const [instrument, setInstrument] = useState([])
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [instruments, setInstruments] = useState([])
     const [imageAsFile, setImageAsFile] = useState('')
     const [imageAsUrl, setImageAsUrl] = useState("")
 
     const uploadPic = () => {
         document.getElementById("selectImg").click();
     }
+
+    useEffect(()=> {
+        axios.get(`/api/profile/${props.user.user_id}`)
+        .then(res=> {
+            props.getUser(res.data[0])
+            console.log(res.data)
+            setInstruments(res.data[0].instruments)
+            // setUsername(res.data[0].username)
+            // setFirstName(res.data[0].first_name)
+            // setLastName(res.data[0].last_name)
+
+        })
+        .catch(err => console.log(err))
+    },[])
+
+
+
+
 
     console.log(imageAsFile)
     const handleImageAsFile = (e) => {
@@ -77,4 +100,5 @@ const Profile = () => {
 
 
 
-export default Profile;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getUser})(Profile);

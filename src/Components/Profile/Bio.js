@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
 import { Grid, Menu, Segment } from 'semantic-ui-react'
+import {connect} from 'react-redux';
+import {getUser} from '../../redux/reducer';
 
-export default class MenuExampleTabularOnLeft extends Component {
-  state = { activeItem: 'bio' }
+class Bio extends Component {
+  constructor(props){
+  super(props)
+  this.state={
+    activeItem: ''
+  }
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state
-
+    console.log(this.props)
     return (
       <Grid>
         <Grid.Column width={4}>
@@ -19,8 +26,8 @@ export default class MenuExampleTabularOnLeft extends Component {
               onClick={this.handleItemClick}
             />
             <Menu.Item
-              name='pics'
-              active={activeItem === 'pics'}
+              name='instruments'
+              active={activeItem === 'instruments'}
               onClick={this.handleItemClick}
             />
             <Menu.Item
@@ -38,11 +45,18 @@ export default class MenuExampleTabularOnLeft extends Component {
 
         <Grid.Column stretched width={12}>
           <Segment>
-            This is an stretched grid column. This segment will always match the
-            tab height
+            {
+            activeItem ==='instruments' ?
+            this.props.user.instruments
+            :
+            "this is other element"
+            }
           </Segment>
         </Grid.Column>
       </Grid>
     )
   }
 }
+
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getUser})(Bio);
