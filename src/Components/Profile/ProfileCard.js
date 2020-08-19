@@ -10,15 +10,16 @@ const extra = (
 )
 // console.log(this.props.imageAsUrl)
 
-const CardExampleCardProps = (props) => (
-  
+const CardExampleCardProps = (props) => {
+  return(
   <Card
-    image="test"
+    image={props.imageAsUrl.imageAsUrl}
     header='Elliot Baker'
     meta='Friend'
     description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
     extra={extra}
   />
-)
+  )
+}
 
 export default CardExampleCardProps
