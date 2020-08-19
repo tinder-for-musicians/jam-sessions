@@ -11,7 +11,8 @@ module.exports = {
 
     updateProfilePic: async (req, res) => {
         const {id} = req.params;
-        const {imageAsUrl} = req.body;
+        const imageAsUrl = req.body;
+        console.log(id,imageAsUrl)
         const db = req.app.get('db');
 
         await db.profile.update_profile_pic([id, imageAsUrl])
