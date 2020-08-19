@@ -11,7 +11,7 @@ module.exports = {
     getAttributes: async (req, res) => {
         const db = req.app.get('db');
 
-        db.instrument.get_attributes()
+        await db.instrument.get_attributes()
             .then(response => {
                 res.status(200).send(response[0]);
             })
