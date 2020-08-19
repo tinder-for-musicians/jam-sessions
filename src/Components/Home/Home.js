@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import "./Home.scss";
 import Search from "./Search";
+import {connect} from "react-redux";
 
 class Home extends Component {
 

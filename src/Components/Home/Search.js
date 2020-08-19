@@ -87,7 +87,7 @@ function SearchExampleStandard() {
             {JSON.stringify(source, null, 2)}
           </pre>
         </Segment>
-      </Grid.Column>*/}
+      </Grid.Column> */}
     </Grid> 
   )
 }

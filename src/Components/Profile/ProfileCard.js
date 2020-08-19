@@ -1,4 +1,4 @@
-import React from 'react'
+import React  from 'react'
 import { Card, Icon } from 'semantic-ui-react'
 
 const extra = (
@@ -8,17 +8,18 @@ const extra = (
 
   </a>
 )
-// console.log(this.props.imageAsUrl)
 
-const CardExampleCardProps = (props) => (
-  
-  <Card
-    image="test"
-    header='Elliot Baker'
-    meta='Friend'
-    description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-    extra={extra}
-  />
-)
+const CardExampleCardProps = (props) => {
+  console.log(props);
+  return (
+      <Card
+        image={props.imgUrl.imageAsUrl}
+        header='Elliot Baker'
+        meta='Friend'
+        description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+        extra={extra}
+      />
+  )
+}
 
-export default CardExampleCardProps
+export default CardExampleCardProps;

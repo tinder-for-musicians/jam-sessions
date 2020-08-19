@@ -3,15 +3,14 @@ import "./Profile.scss";
 import Bio from "./Bio";
 import ProfileCard from "./ProfileCard";
 import { Button } from 'semantic-ui-react'
-import Upload from '../Firebase/Upload';
 import {storage} from "../Firebase/index";
 
 const Profile = () => {
 
     const [username, setUsername] = useState("");
 
-    const [imageAsFile, setImageAsFile] = useState('')
-    const [imageAsUrl, setImageAsUrl] = useState("")
+    const [imageAsFile, setImageAsFile] = useState('');
+    const [imageAsUrl, setImageAsUrl] = useState("");
 
 
 
@@ -47,23 +46,20 @@ const Profile = () => {
         storage.ref('images').child(imageAsFile.name).getDownloadURL()
          .then(fireBaseUrl => {
              console.log(fireBaseUrl)
-             console.log(imageAsUrl)
             setImageAsUrl(e => ({...e, imageAsUrl: fireBaseUrl}))
          })
       })
       }
-  
-      console.log(imageAsUrl)
 
     return (
         
         <div className="profile-wrapper">
             <div className="profile-img-wrapper">
                 <div className="profile-img-div">
-                    <ProfileCard imageAsUrl={imageAsUrl}/>
+                    <ProfileCard imgUrl={imageAsUrl} /> 
                     <Button color='orange' onClick={uploadPic} >Add Profile Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile}/>
-                    <Button color='orange' onClick={handleFireBaseUpload}>Submit</Button>
+                    <Button color='orange' type="submit" onClick={handleFireBaseUpload}>Submit</Button>
                 </div>
             </div>
             <div className="bio-div" > 
