@@ -76,7 +76,7 @@ function SearchExampleStandard() {
         />
       </Grid.Column>
 
-      {/* <Grid.Column width={10}>
+      <Grid.Column width={10}>
         <Segment>
           <Header>State</Header>
           <pre style={{ overflowX: 'auto' }}>
@@ -87,7 +87,7 @@ function SearchExampleStandard() {
             {JSON.stringify(source, null, 2)}
           </pre>
         </Segment>
-      </Grid.Column>*/}
+      </Grid.Column>
     </Grid> 
   )
 }
