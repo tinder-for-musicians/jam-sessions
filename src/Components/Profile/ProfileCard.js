@@ -10,15 +10,14 @@ const extra = (
 )
 
 const CardExampleCardProps = (props) => {
-  console.log(props);
-  return (
-      <Card
-        image={props.imgUrl.imageAsUrl}
-        header='Elliot Baker'
-        meta='Friend'
-        description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
-        extra={extra}
-      />
+  return(
+  <Card
+    image={props.imageAsUrl.imageAsUrl}
+    header='Elliot Baker'
+    meta='Friend'
+    description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
+    extra={extra}
+  />
   )
 }
 
