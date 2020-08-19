@@ -57,7 +57,7 @@ const Profile = () => {
             <div className="profile-img-wrapper">
                 <div className="profile-img-div">
                     <ProfileCard imgUrl={imageAsUrl} /> 
-                    <Button color='orange' onClick={uploadPic} >Add Profile Photo</Button>
+                    <Button color='orange' onClick={uploadPic} className="circular">Add Profile Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile}/>
                     <Button color='orange' type="submit" onClick={handleFireBaseUpload}>Submit</Button>
                 </div>
