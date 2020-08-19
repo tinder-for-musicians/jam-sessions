@@ -2,25 +2,31 @@ module.exports = {
     getProfile: async (req, res) => {
         const {id} = req.params;
         const db = req.app.get('db');
-
-        db.profile.get_profile([id])
+        await db.profile.get_profile([id])
             .then(response => {
                 res.status(200).send(response[0]);
             })
             .catch(err => res.status(500).send(err));
     },
 
-    // updateProfilePic: async (req, res) => {
-    //     const {id} = req.params;
-    //     const {}
-    // },
+    updateProfilePic: async (req, res) => {
+        const {id} = req.params;
+        const {imageAsUrl} = req.body;
+        const db = req.app.get('db');
+
+        await db.profile.update_profile_pic([id, imageAsUrl])
+            .then(() => {
+                res.sendStatus(202);
+            })
+            .catch(err => res.status(400).send(err));
+    },
 
     updateName: async (req, res) => {
         const {id} = req.params;
         const {first_name, last_name} = req.body;
         const db = req.app.get('db');
 
-        db.profile.update_name([id, first_name, last_name])
+        await db.profile.update_name([id, first_name, last_name])
             .then(() => res.sendStatus(202))
             .catch(err => res.status(400).send(err));
     },
@@ -30,7 +36,7 @@ module.exports = {
         const {bio} = req.body;
         const db = req.app.get('db');
 
-        db.profile.update_bio([id, bio])
+        await db.profile.update_bio([id, bio])
             .then(() => {
                 res.sendStatus(202);
             })
@@ -42,7 +48,7 @@ module.exports = {
         const {location} = req.body;
         const db = req.app.get('db');
 
-        db.profile.update_location([id, location])
+        await db.profile.update_location([id, location])
             .then(() => res.sendStatus(202))
             .catch(err => res.status(400).send(err));
     },
@@ -52,7 +58,7 @@ module.exports = {
         const {instrument, level, experience} = req.body;
         const db = req.app.get('db');
 
-        db.profile.add_instrument([id, instrument, level, experience])
+        await db.profile.add_instrument([id, instrument, level, experience])
             .then(() => res.sendStatus(202))
             .catch(err => res.status(400).send(err));
     },
@@ -62,7 +68,7 @@ module.exports = {
         const {instrument, level, experience} = req.body;
         const db = req.app.get('db');
 
-        db.profile.update_instrument([id, instrument, level, experience])
+        await db.profile.update_instrument([id, instrument, level, experience])
             .then(() => res.sendStatus(202))
             .catch(err => res.status(400).send(err));
     },
@@ -71,7 +77,7 @@ module.exports = {
         const {id, instrument} = req.body;
         const db = req.app.get('db');
         
-        db.profile.delete_instrument([id, instrument])
+        await db.profile.delete_instrument([id, instrument])
             .then(() => {
                 res.sendStatus(202);
             })
