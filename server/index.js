@@ -5,6 +5,7 @@ const io = require('socket.io')();
 const authCtrl = require('./controllers/authController');
 const instrCtrl = require('./controllers/instrController');
 const profileCtrl = require('./controllers/profileController');
+const searchCtrl = require('./controllers/searchController');
 
 const {SERVER_PORT, IO_PORT, CONNECTION_STRING} = process.env;
 
@@ -37,6 +38,7 @@ app.get('/auth/logout', authCtrl.logout);
 // app.get('/api/instruments', instrCtrl.getInstruments);
 app.get('/api/instruments', instrCtrl.getAttributes);
 app.get('/api/profile/:id', profileCtrl.getProfile);
+app.get('/api/search', searchCtrl.searchUsers);
 app.post('/api/profile/instrument/:id', profileCtrl.addInstrument);
 app.put('/api/profile/picture/:id', profileCtrl.updateProfilePic);
 app.put('/api/profile/name/:id', profileCtrl.updateName);
