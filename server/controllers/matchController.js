@@ -31,5 +31,15 @@ module.exports = {
                 res.status(202).send(results);
             })
             .catch(err => res.status(400).send(err));
+    },
+
+    removeMatch: async (req, res) => {
+        const {id} = req.params;
+        const {username} = req.body;
+        const db = req.app.get('db');
+
+        await db.matches.removeMatch([id, username])
+            .then(() => res.sendStatus(202))
+            .catch(err = res.status(400).send(err));
     }
 }
