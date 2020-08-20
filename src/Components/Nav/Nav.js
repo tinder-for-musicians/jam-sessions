@@ -30,7 +30,7 @@ class Nav extends Component {
                     
                     <div className="nav-btn-div"><button className="nav-btn" onClick={this.handleLogout}>Logout</button></div>
                     <div className="nav-photo-div">
-                        <img src="https://via.placeholder.com/150" alt="user photo"/>
+                        <img src="https://via.placeholder.com/150" alt="user face"/>
                     </div>
                 </nav>
             </div>
