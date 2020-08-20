@@ -82,9 +82,5 @@ module.exports = {
                 res.sendStatus(202);
             })
             .catch(err => res.status(400).send(err));
-    },
-
-    getSearchProfiles: async (req, res) => {
-        
     }
 }
