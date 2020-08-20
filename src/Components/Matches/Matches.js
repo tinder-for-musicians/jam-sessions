@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./Matches.scss";
-import { Grid, Image, Container, Card, Icon } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon, Accordion } from 'semantic-ui-react';
+import "../icons/accordion.png";
 
 
 class Matches extends Component {
@@ -39,6 +40,7 @@ class Matches extends Component {
                             <a>
                                 <Icon name='music' />
                                 Instruments
+                                <img src={require("../icons/accordion.png")} alt="banjo"/>
                             </a>
                             </Card.Content>
                         </Card>
