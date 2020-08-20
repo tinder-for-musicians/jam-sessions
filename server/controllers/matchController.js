@@ -15,8 +15,14 @@ module.exports = {
         const {username} = req.body;
         const db = req.app.get('db');
 
+        const hasMatched = await db.matches.check_for_match([id, username]);
+
+        if (hasMatched) {
+            return res.status(200).send(`${username} has attempted to match with you as well. Check your matches to start messaging!`);
+        }
+
         await db.matches.add_match_request([id, username])
-            .then(results => {
+            .then(() => {
                 res.sendStatus(202);
             })
             .catch(err => res.status(400).send(err));
@@ -53,5 +59,13 @@ module.exports = {
             .catch(err => res.status(400).send(err));
     },
 
-    
+    blockMatch: async (req, res) => {
+        const {id} = req.params;
+        const {username} = req.body;
+        const db = req.app.get('db');
+
+        await db.matches.block_match([id, username])
+            .then(() => res.status(202).send(`Successfully blocked ${username}`))
+            .catch(err => res.status(400).send(err));
+    }
 }
