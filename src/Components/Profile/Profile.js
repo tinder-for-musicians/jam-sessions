@@ -70,7 +70,7 @@ const Profile = (props) => {
                         console.log(fireBaseUrl)
                         console.log(imageAsUrl)
                         setImageAsUrl(e => ({ ...e, imageAsUrl: fireBaseUrl }))
-                    })
+                    })9
             })
     }
 
