@@ -14,7 +14,6 @@ class Bio extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   handleActiveItem = () => {
-    console.log(this.state.activeItem)
     if (this.state.activeItem === 'bio') {
       return <p>{this.props.user.bio}</p>;
     } else if (this.state.activeItem === 'instruments') {

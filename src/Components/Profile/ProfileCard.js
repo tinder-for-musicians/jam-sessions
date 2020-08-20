@@ -1,8 +1,10 @@
 import React  from 'react'
 import { Card, Icon } from 'semantic-ui-react'
+import {getUser} from "../../redux/reducer";
+import {connect} from 'react-redux';
 
 const extra = (
-  <a>
+  <a href="friends">
     <Icon name='user' />
     16 Friends
 
@@ -10,15 +12,18 @@ const extra = (
 )
 
 const CardExampleCardProps = (props) => {
+  const fullName = `${props.firstName} ${props.lastName}`
+
   return(
   <Card
-    image={props.imageAsUrl.imageAsUrl}
-    header='Elliot Baker'
-    meta='Friend'
+    image={props.user.profile_pic}
+    header={fullName}
+    meta={props.username}
     description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
     extra={extra}
   />
   )
 }
 
-export default CardExampleCardProps;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getUser})(CardExampleCardProps);
