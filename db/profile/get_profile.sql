@@ -7,11 +7,11 @@ SELECT
     , u.bio
     , CASE
         WHEN EXISTS(SELECT * FROM profile WHERE user_id = $1)
-        THEN ARRAY_AGG(
-            ARRAY[i.instrument_name, e.experience_years, l.level_name]
-        )
+            THEN ARRAY_AGG(
+                ARRAY[i.instrument_name, e.experience_years, l.level_name]
+            )
         ELSE NULL
-        END AS user_instruments
+    END AS user_instruments
 FROM users AS u
 LEFT JOIN profile AS p
     ON u.user_id = p.user_id
