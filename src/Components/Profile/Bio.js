@@ -13,9 +13,18 @@ class Bio extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleActiveItem = () => {
+    if (this.state.activeItem === 'bio') {
+      return <p>{this.props.user.bio}</p>;
+    } else if (this.state.activeItem === 'instruments') {
+      return <p>{this.props.user.user_instruments}</p>;
+    } else {
+      return ("Nothing works");
+    }
+  }
+
   render() {
     const { activeItem } = this.state
-    console.log(this.props)
     return (
       <Grid>
         <Grid.Column width={4}>
@@ -45,12 +54,7 @@ class Bio extends Component {
 
         <Grid.Column stretched width={12}>
           <Segment>
-            {
-            activeItem ==='instruments' ?
-            this.props.user.instruments
-            :
-            "this is other element"
-            }
+            {this.handleActiveItem()}
           </Segment>
         </Grid.Column>
       </Grid>

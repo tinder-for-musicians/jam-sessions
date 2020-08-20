@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./Profile.scss";
 import Bio from "./Bio";
 import ProfileCard from "./ProfileCard";
-import { Button, PlaceholderParagraph } from 'semantic-ui-react'
-import Upload from '../Firebase/Upload';
+import { Button} from 'semantic-ui-react'
 import { storage } from "../Firebase/index";
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
@@ -23,16 +22,17 @@ const Profile = (props) => {
     }
 
     useEffect(()=> {
+        console.log(props.user)
         axios.get(`/api/profile/${props.user.user_id}`)
-        .then(res=> {
-            // props.getUser(res.data)
+        .then(res => {
+            props.getUser(res.data)
             console.log(res.data)
-            setInstruments(res.data.instruments)
+            setInstruments(res.data.user_instruments)
             setUsername(res.data.username)
             setFirstName(res.data.first_name)
             setLastName(res.data.last_name)
-            // setImageAsUrl(res.data.profile_pic)
-
+            setImageAsUrl(res.data.profile_pic)
+            console.log(props.user)
         })
         .catch(err => console.log(err))
     },[])
@@ -43,7 +43,6 @@ const Profile = (props) => {
 
 
 
-    console.log(imageAsFile)
     const handleImageAsFile = (e) => {
         const image = e.target.files[0];
         setImageAsFile(imageFile => (image));
@@ -70,32 +69,34 @@ const Profile = (props) => {
                 // gets the download url then sets the image from firebase as the value for the imgUrl key:
                 storage.ref('images').child(imageAsFile.name).getDownloadURL()
                     .then(fireBaseUrl => {
-                        console.log(fireBaseUrl)
+                        setImageAsUrl(e => ({ ...e, imageAsUrl: fireBaseUrl}))
                         console.log(imageAsUrl)
-                        setImageAsUrl(e => ({ ...e, imageAsUrl: fireBaseUrl }))
-                        uploadImgDb()
+                        uploadImgDb(fireBaseUrl)
                     })
             })
     }
 
-    const uploadImgDb = () => {
-        const {imageAsUrl} = imageAsUrl
-        console.log('props.user' + imageAsUrl)
-        axios.put(`/api/profile/picture/${props.user.user_id}`,imageAsUrl)
+    const uploadImgDb = (profile_pic) => {
+        console.log(props.user);
+        axios.put(`/api/profile/picture/${props.user.user_id}`, {profile_pic})
         .then(res => {
+            console.log(res.data)
             props.getUser(res.data)
-           
+            
         })
     }
 
-    console.log(imageAsUrl)
 
     return (
 
         <div className="profile-wrapper">
             <div className="profile-img-wrapper">
                 <div className="profile-img-div">
-                    <ProfileCard imageAsUrl={imageAsUrl} />
+                    <ProfileCard 
+                    imageAsUrl={imageAsUrl}
+                    firstName={firstName}
+                    lastName={lastName}
+                    username={username} />
                     <Button color='orange' onClick={uploadPic} >Add Profile Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile} />
                     <Button color='orange' onClick={handleFireBaseUpload}>Submit</Button>

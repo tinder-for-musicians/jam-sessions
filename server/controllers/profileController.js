@@ -11,11 +11,10 @@ module.exports = {
 
     updateProfilePic: async (req, res) => {
         const {id} = req.params;
-        const imageAsUrl = req.body;
-        console.log(id,imageAsUrl)
+        const {profile_pic} = req.body;
         const db = req.app.get('db');
 
-        await db.profile.update_profile_pic([id, imageAsUrl])
+        await db.profile.update_profile_pic([id, profile_pic])
             .then(() => {
                 res.sendStatus(202);
             })
