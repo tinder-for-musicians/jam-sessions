@@ -41,5 +41,17 @@ module.exports = {
         await db.matches.removeMatch([id, username])
             .then(() => res.sendStatus(202))
             .catch(err = res.status(400).send(err));
-    }
+    },
+
+    declineMatchRequest: async (req, res) => {
+        const {id} = req.params;
+        const {username} = req.body;
+        const db = req.app.get('db');
+
+        await db.matches.decline_match_request([id, username])
+            .then(() => res.sendStatus(202))
+            .catch(err => res.status(400).send(err));
+    },
+
+    
 }
