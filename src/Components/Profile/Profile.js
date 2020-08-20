@@ -37,12 +37,6 @@ const Profile = (props) => {
         .catch(err => console.log(err))
     },[])
 
-    
-
-
-
-
-
     const handleImageAsFile = (e) => {
         const image = e.target.files[0];
         setImageAsFile(imageFile => (image));
