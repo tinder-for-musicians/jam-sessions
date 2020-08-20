@@ -17,6 +17,7 @@ module.exports = {
         const registerUser = await db.auth.register_user([first_name, last_name, username, email, hash]);
         const user = registerUser[0];
 
+        res.session.user = user;
         return res.status(200).send(user);
     },
 
@@ -34,12 +35,22 @@ module.exports = {
         if (!isAuthenticated) {
             return res.status(403).send('Incorrect password');
         }
+
+        res.session.user = existingUser;
         return res.status(200).send(existingUser);
     },
 
     logout: (req, res) => {
-        // req.session.destroy();
+        req.session.destroy();
 
         res.sendStatus(200);
     },
+
+    checkUser: (req, res) => {
+        if(req.session && req.session.user) {
+            res.sendStatus(200);
+        
+        }
+        else res.sendStatus(404)
+    }
 }
