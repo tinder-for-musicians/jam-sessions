@@ -5,6 +5,7 @@ import Landing from './Components/Landing/Landing';
 import Home from './Components/Home/Home';
 import Profile from './Components/Profile/Profile';
 import Matches from './Components/Matches/Matches';
+import NotFound from "./Components/Home/NotFound";
 
 
 export default (
@@ -13,5 +14,8 @@ export default (
         <Route path ='/matches' component={Matches} />
         <Route path ='/profile' component={Profile} />
         <Route path = '/dash' component={Home}/>
+        <Route render={() => {
+            return <NotFound />
+        }} />
     </Switch>
 )
