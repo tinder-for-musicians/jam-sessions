@@ -23,7 +23,7 @@ class Home extends Component {
     }
 
     getProfileInfo = () => {
-        axios.get(`/api/profile/${this.props.user.user_id}`)
+        axios.get(`/api/profile`)
         .then(res => {
             this.props.getProfile(res.data);
         })

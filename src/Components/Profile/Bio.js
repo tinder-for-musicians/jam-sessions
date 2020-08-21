@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Menu, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {getUser} from '../../redux/reducer';
+import "./Profile.scss";
 
 class Bio extends Component {
   constructor(props){
