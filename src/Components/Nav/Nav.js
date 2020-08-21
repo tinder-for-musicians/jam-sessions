@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import "./Nav.scss";
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {getProfile} from '../../redux/reducer';
+import {getProfile, clearUser} from '../../redux/reducer';
 
 class Nav extends Component {
 
@@ -41,4 +41,4 @@ class Nav extends Component {
 }
  
 const mapStateToProps = reduxState => reduxState;
-export default connect(mapStateToProps, {getProfile})(Nav);
+export default connect(mapStateToProps, {getProfile, clearUser})(Nav);
