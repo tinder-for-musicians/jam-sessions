@@ -21,6 +21,8 @@ CREATE TABLE users (
 	username VARCHAR(50) UNIQUE NOT NULL,
 	password VARCHAR(200) NOT NULL,
 	location VARCHAR(200),
+	loc_latitude DECIMAL,
+	loc_longitude DECIMAL,
 	profile_pic TEXT,
 	bio VARCHAR(500)
 );
@@ -41,9 +43,10 @@ CREATE TABLE profile (
 );
 
 CREATE TABLE matches (
-	user_id INTEGER REFERENCES users(user_id),
-	match_id INTEGER REFERENCES users(user_id),
-	is_matched BOOLEAN DEFAULT FALSE,
-	is_blocked BOOLEAN DEFAULT FALSE,
+	user_id INTEGER REFERENCES users(user_id) NOT NULL,
+	match_id INTEGER REFERENCES users NOT NULL,
+	is_matched BOOLEAN DEFAULT FALSE NOT NULL,
+	is_rejected BOOLEAN DEFAULT FALSE NOT NULL,
+	is_blocked BOOLEAN DEFAULT FALSE NOT NULL,
 	PRIMARY KEY(user_id, match_id)
 );
