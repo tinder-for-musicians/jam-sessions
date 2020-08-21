@@ -7,13 +7,276 @@ $color5: #C5CBE3;
 
 
 
+.home-body{
+    
+    display: flex;
+    flex-direction: column;
+    background-color: $color1;
+    color: $color3;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.intro{
+  color: black;
+  font-size: 30px;
+}
+
+.searchcontainer{
+    position: absolute;
+    display: flex;
+    height: 90px;
+    width: 900px;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $color2;
+    padding: 10px;
+    top: 222px;
+    box-shadow: 0px 1px 1px 0px #403D39;
+    border-radius: 2px;
+}
+
 .searchinput{
     background-color: $color5;
     color: black;
     position: relative;
     top: 100;
     width: 450px;
-    height: 30px;
+    height: 40px;
     font-size: 18px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+
+.srchbtn{
+    position: relative;
+    color: white;
+    background-color: $color1;
     border: none;
+    font-size: 18px;
+    height: 40px;
+    width: 70px;
+    margin-left: 5px;
+    margin-right: 10px;
+
+
+}
+.resetbtn{
+    position: relative;
+    background-color: #707793;
+    color: white;
+    height: 30px;
+    width: 60px;
+    right: 10px;
+    font-size: 16px;
+    border: none;
+    margin-left: 10px;
+}
+
+.dashboard{
+  position: absolute;
+  display: flex;
+  top: 400px;
+  // flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: $color5;
+    margin: 3px;
+    height: 40px;
+    width: 80px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+.dropdown2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: $color5;
+    margin: 3px;
+    height: 40px;
+    width: 145px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+.dropdown3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: $color5;
+    margin: 3px;
+    height: 40px;
+    width: 70px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+
+.tooltip {
+    
+    display: flex;
+    flex: 1 1 150px;
+    flex-direction: row;
+    margin: 10px;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    max-width: 170px;
+    height: 80px;
+    border-radius: 5px;
+    background-color: white;
+    background-repeat: no-repeat;
+    // position: absolute;
+    overflow: hidden;
+    transition: transform 0.4s ease-out, box-shadow 0.4s;
+  }
+  
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    z-index: 20;
+    transition: all 0.2s;
+    font-weight: 500;
+    letter-spacing: 2px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .tooltip::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background-color: $color5;
+    transition: all 0.3s ease-out;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .tooltip:hover,
+  .tooltip:focus {
+    box-shadow: 0 13px 33px -7px $color5;
+    transform: translateY(-5px);
+  }
+  
+  .tooltip:hover::before,
+  .tooltip:focus::before,
+  .tooltip:hover::after,
+  .tooltip:focus::after {
+    visibility: visible;
+    opacity: 0.4;
+  }
+  
+  .tooltip:hover .Pricetooltip,
+  .tooltip:hover .Bottom,
+  .tooltip:focus .Pricetooltip,
+  .tooltip:focus .Bottom {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+// .tooltip .tooltiptext {
+//   visibility: hidden;
+//   top: -40px;
+//   left: 60px;
+//   width: 40px;
+//   length: 100px;
+//   font-size: 12px;
+//   background-color: $color4;
+//   color: white;
+//   text-align: center;
+//   border-radius: 5px;
+//   position: absolute;
+//   z-index: 1;
+// }
+
+// .tooltip:hover .tooltiptext {
+//   visibility: visible;
+//   position: relative;
+//   transition: transform 0.4s ease-out, 
+  
+// }
+
+@media(max-width: 769px){
+  .searchcontainer{
+      flex-direction: column;
+    position: absolute;
+    display: flex;
+    height: 200px;
+    width: 470px;
+    align-items: stretch;
+    justify-content: space-between;
+    background-color: $color2;
+    top: 306px;
+    box-shadow: 0px 1px 1px 0px #403D39;
+    border-radius: 2px;
+}
+
+.dropdown1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: $color5;
+    margin: 3px;
+    height: 40px;
+    width: 80px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+.dropdown2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: $color5;
+    margin: 3px;
+    height: 40px;
+    width: 145px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+.dropdown3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: $color5;
+    margin: 3px;
+    height: 40px;
+    width: 70px;
+    border: solid;
+    border-radius: 3px;
+    border-color: $color4;
+}
+
 }
