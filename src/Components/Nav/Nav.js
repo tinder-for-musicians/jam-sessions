@@ -4,6 +4,7 @@ import "./Nav.scss";
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {getProfile} from '../../redux/reducer';
+import logo from "./jam-session-logo.png"
 
 class Nav extends Component {
 
@@ -21,7 +22,7 @@ class Nav extends Component {
             <div>
                 <nav id="navbar">
                     <div id="logo-div">
-                        <img src="https://via.placeholder.com/150" alt="logo"/>
+                        <img src={logo} alt="logo"/>
                         <div className="nav-links">
                             <Link to="/dash"><p>Home</p></Link>
                             <Link to="/profile"><p>Profile</p></Link>
