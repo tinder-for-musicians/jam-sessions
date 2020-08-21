@@ -23,7 +23,7 @@ const Profile = (props) => {
 
     useEffect(()=> {
         console.log(props.user)
-        axios.get(`/api/profile/${props.user.user_id}`)
+        axios.get(`/api/profile`)
         .then(res => {
             props.getUser(res.data)
             console.log(res.data)
@@ -72,7 +72,7 @@ const Profile = (props) => {
 
     const uploadImgDb = (profile_pic) => {
         console.log(props.user);
-        axios.put(`/api/profile/picture/${props.user.user_id}`, {profile_pic})
+        axios.put(`/api/profile/picture`, {profile_pic})
         .then(res => {
             console.log(res.data)
             props.getUser(res.data)

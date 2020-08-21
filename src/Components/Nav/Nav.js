@@ -3,8 +3,12 @@ import {Link} from "react-router-dom";
 import "./Nav.scss";
 import axios from 'axios';
 import {connect} from 'react-redux';
+<<<<<<< HEAD
 import {getProfile} from '../../redux/reducer';
 import logo from "./jam-session-logo.png"
+=======
+import {getProfile, clearUser} from '../../redux/reducer';
+>>>>>>> master
 
 class Nav extends Component {
 
@@ -42,4 +46,4 @@ class Nav extends Component {
 }
  
 const mapStateToProps = reduxState => reduxState;
-export default connect(mapStateToProps, {getProfile})(Nav);
+export default connect(mapStateToProps, {getProfile, clearUser})(Nav);

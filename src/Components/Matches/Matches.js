@@ -27,14 +27,14 @@ class Matches extends Component {
 
     //retrieves matches from db to display in state onMount - may need to create Match.js component to render different data in each mapped match component. 
     getMatches = () => {
-        axios.get(`/api/match${this.props.user.user_id}`)
+        axios.get(`/api/matches`)
             .then(res => this.setState({ array: res.data }))
             .catch(err => console.log(err))
     };
 
     //on-click deletes match
-    deletePost = (id) => {
-        axios.delete(`/api/match/${id}`)
+    deletePost = () => {
+        axios.delete(`/api/matches`)
         .then(() => {
             this.getMatches();
         })
@@ -44,7 +44,7 @@ class Matches extends Component {
     //adds match to db user_id foreign key
     handleClick = (match) => {
         console.log(this.props)
-        axios.post('/api/match', { id: this.props.user.user_id, match })
+        axios.post('/api/matches', { id: this.props.user.user_id, match })
             .catch(err => console.log(err));
     };
 
