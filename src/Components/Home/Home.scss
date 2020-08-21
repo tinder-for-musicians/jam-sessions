@@ -1,13 +1,19 @@
-.home-wrapper {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #EFE2BA;
-    height: 100vh;
-}
 
-.home-wrapper2 {
-    background-color: #C5CBE3;
-    height: 50%;
-    align-content: flex-start;
+$color1: #D79922;
+$color2: #EFE2BA;
+$color3: #F13C20;
+$color4: #4056A1;
+$color5: #C5CBE3;
+
+
+
+.searchinput{
+    background-color: $color5;
+    color: black;
+    position: relative;
+    top: 100;
+    width: 450px;
+    height: 30px;
+    font-size: 18px;
+    border: none;
 }
