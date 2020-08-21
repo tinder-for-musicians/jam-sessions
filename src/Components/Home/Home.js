@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./Home.scss";
 import Search from "./Search";
 import {connect} from 'react-redux';
+import {getProfile} from '../../redux/reducer';
 import axios from 'axios';
 
 class Home extends Component {
@@ -17,6 +18,15 @@ class Home extends Component {
         axios.get('/auth/checkuser')
             .then()
             .catch( () => this.props.history.push('/'));
+
+        this.getProfileInfo();
+    }
+
+    getProfileInfo = () => {
+        axios.get(`/api/profile/${this.props.user.user_id}`)
+        .then(res => {
+            this.props.getProfile(res.data);
+        })
     }
 
     render() { 
@@ -39,4 +49,4 @@ class Home extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, {getProfile})(Home);

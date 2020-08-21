@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Matches.scss";
-import { Grid, Image, Container, Card, Icon, Accordion } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon} from 'semantic-ui-react';
 import "../icons/accordion.png";
 import axios from 'axios';
 import {connect} from 'react-redux';
@@ -51,9 +51,9 @@ class Matches extends Component {
 
     render() {
         const mappedMatches = this.state.array.map((index => {
-            return <div>
+            return <div key={index}>
                 <Grid.Column>
-                    <Card key={index}>
+                    <Card >
                         <Image src='https://via.placeholder.com/150' wrapped ui={false} />
                         <Card.Content>
                             <Card.Header>Matthew</Card.Header>

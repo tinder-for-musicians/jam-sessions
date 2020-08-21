@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import "./Nav.scss";
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {getProfile} from '../../redux/reducer';
 
 class Nav extends Component {
 
@@ -30,7 +32,7 @@ class Nav extends Component {
                     
                     <div className="nav-btn-div"><button className="nav-btn" onClick={this.handleLogout}>Logout</button></div>
                     <div className="nav-photo-div">
-                        <img src="https://via.placeholder.com/150" alt="user face"/>
+                        <img src={this.props.profile.profile_pic} alt="user face"/>
                     </div>
                 </nav>
             </div>
@@ -38,4 +40,5 @@ class Nav extends Component {
     }
 }
  
-export default Nav;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getProfile})(Nav);
