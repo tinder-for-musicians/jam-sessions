@@ -50,21 +50,21 @@ app.get('/api/instruments', instrCtrl.getAttributes);
 
 app.get('/api/search', searchCtrl.searchUsers);
 
-app.get('/api/profile/:id', profileCtrl.getProfile);
-app.post('/api/profile/instrument/:id', profileCtrl.addInstrument);
-app.put('/api/profile/picture/:id', profileCtrl.updateProfilePic);
-app.put('/api/profile/name/:id', profileCtrl.updateName);
-app.put('/api/profile/bio/:id', profileCtrl.updateBio);
-app.put('/api/profile/location/:id', profileCtrl.updateLocation);
-app.put('/api/profile/instrument/:id', profileCtrl.updateInstrument);
-app.delete('/api/profile/instrument/:id', profileCtrl.deleteInstrument);
+app.get('/api/profile', profileCtrl.getProfile);
+app.post('/api/profile/instrument', profileCtrl.addInstrument);
+app.put('/api/profile/picture', profileCtrl.updateProfilePic);
+app.put('/api/profile/name', profileCtrl.updateName);
+app.put('/api/profile/bio', profileCtrl.updateBio);
+app.put('/api/profile/location', profileCtrl.updateLocation);
+app.put('/api/profile/instrument', profileCtrl.updateInstrument);
+app.delete('/api/profile/instrument', profileCtrl.deleteInstrument);
 
-app.get('/api/matches/requests/:id', matchCtrl.getMyMatchRequests);
-app.get('/api/matches/:id', matchCtrl.getMyMatches);
-app.post('/api/matches/:id', matchCtrl.addMatchRequest);
-app.put('/api/matches/decline/:id', matchCtrl.declineMatchRequest);
-app.put('/api/matches/block/:id', matchCtrl.blockMatch);
-app.delete('/api/matches/:id', matchCtrl.removeMatch);
+app.get('/api/matches/requests', matchCtrl.getMyMatchRequests);
+app.get('/api/matches', matchCtrl.getMyMatches);
+app.post('/api/matches', matchCtrl.addMatchRequest);
+app.put('/api/matches/decline', matchCtrl.declineMatchRequest);
+app.put('/api/matches/block', matchCtrl.blockMatch);
+app.delete('/api/matches', matchCtrl.removeMatch);
 
 io.listen(IO_PORT);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));

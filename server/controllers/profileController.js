@@ -1,6 +1,6 @@
 module.exports = {
     getProfile: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const db = req.app.get('db');
         await db.profile.get_profile([id])
             .then(response => {
@@ -10,7 +10,7 @@ module.exports = {
     },
 
     updateProfilePic: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {profile_pic} = req.body;
         const db = req.app.get('db');
 
@@ -22,7 +22,7 @@ module.exports = {
     },
 
     updateName: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {first_name, last_name} = req.body;
         const db = req.app.get('db');
 
@@ -32,7 +32,7 @@ module.exports = {
     },
 
     updateBio: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {bio} = req.body;
         const db = req.app.get('db');
 
@@ -44,7 +44,7 @@ module.exports = {
     },
 
     updateLocation: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {location} = req.body;
         const db = req.app.get('db');
 
@@ -54,7 +54,7 @@ module.exports = {
     },
 
     addInstrument: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {instrument, level, experience} = req.body;
         const db = req.app.get('db');
 
@@ -64,7 +64,7 @@ module.exports = {
     },
 
     updateInstrument: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {instrument, level, experience} = req.body;
         const db = req.app.get('db');
 
