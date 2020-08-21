@@ -1,6 +1,6 @@
 module.exports = {
     getMyMatchRequests: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const db = req.app.get('db');
 
         await db.matches.get_my_match_requests([id])
@@ -11,7 +11,7 @@ module.exports = {
     },
 
     addMatchRequest: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {username} = req.body;
         const db = req.app.get('db');
 
@@ -29,7 +29,7 @@ module.exports = {
     },
 
     getMyMatches: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const db = req.app.get('db');
 
         await db.matches.get_my_matches([id])
@@ -40,7 +40,7 @@ module.exports = {
     },
 
     removeMatch: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {username} = req.body;
         const db = req.app.get('db');
 
@@ -50,7 +50,7 @@ module.exports = {
     },
 
     declineMatchRequest: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {username} = req.body;
         const db = req.app.get('db');
 
@@ -60,7 +60,7 @@ module.exports = {
     },
 
     blockMatch: async (req, res) => {
-        const {id} = req.params;
+        const id = req.session.user.user_id;
         const {username} = req.body;
         const db = req.app.get('db');
 
