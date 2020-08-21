@@ -7,6 +7,7 @@ const authCtrl = require('./controllers/authController');
 const instrCtrl = require('./controllers/instrController');
 const profileCtrl = require('./controllers/profileController');
 const searchCtrl = require('./controllers/searchController');
+const matchCtrl = require('./controllers/matchController');
 
 const {SERVER_PORT, IO_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -43,10 +44,13 @@ app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
 app.get('/auth/checkuser', authCtrl.checkUser);
+
 // app.get('/api/instruments', instrCtrl.getInstruments);
 app.get('/api/instruments', instrCtrl.getAttributes);
-app.get('/api/profile/:id', profileCtrl.getProfile);
+
 app.get('/api/search', searchCtrl.searchUsers);
+
+app.get('/api/profile/:id', profileCtrl.getProfile);
 app.post('/api/profile/instrument/:id', profileCtrl.addInstrument);
 app.put('/api/profile/picture/:id', profileCtrl.updateProfilePic);
 app.put('/api/profile/name/:id', profileCtrl.updateName);
@@ -54,6 +58,13 @@ app.put('/api/profile/bio/:id', profileCtrl.updateBio);
 app.put('/api/profile/location/:id', profileCtrl.updateLocation);
 app.put('/api/profile/instrument/:id', profileCtrl.updateInstrument);
 app.delete('/api/profile/instrument/:id', profileCtrl.deleteInstrument);
+
+app.get('/api/matches/requests/:id', matchCtrl.getMyMatchRequests);
+app.get('/api/matches/:id', matchCtrl.getMyMatches);
+app.post('/api/matches/:id', matchCtrl.addMatchRequest);
+app.put('/api/matches/decline/:id', matchCtrl.declineMatchRequest);
+app.put('/api/matches/block/:id', matchCtrl.blockMatch);
+app.delete('/api/matches/:id', matchCtrl.removeMatch);
 
 io.listen(IO_PORT);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
