@@ -29,7 +29,7 @@ class Home extends Component {
             .catch(() => this.props.history.push('/'));
 
         this.getProfileInfo();
-
+        
         this.getInstruments();
     }
 
@@ -114,16 +114,17 @@ class Home extends Component {
                         // onChange={(e) => this.handleSearch(e)}  
                         //uncomment ^ to search as user types 
                     />
+                    
                     <div className = 'dropdown1' onClick = {this.toggleDropdown1}>Skill Level</div>
                     {this.state.dropdownView1 ? (
-                        <nav>
+                        <div classname = 'display1'>
                             <ul>
                             {this.state.level}
                             </ul>
-                        </nav>
+                        </div>
                     )
                     : null}
-                    <div className = 'dropdown2' onClick = {this.toggleDropdown2}> Years of Experience</div>
+                    <div className = 'dropdown2' onClick = {this.toggleDropdown2}> Years of Experience |v</div>
                     {this.state.dropdownView2 ? (
                         <nav>
                             <ul>
