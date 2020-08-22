@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Matches.scss";
-import { Grid, Image, Container, Card, Icon, Accordion } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon} from 'semantic-ui-react';
 import "../icons/accordion.png";
 import axios from 'axios';
 import {connect} from 'react-redux';
@@ -27,14 +27,14 @@ class Matches extends Component {
 
     //retrieves matches from db to display in state onMount - may need to create Match.js component to render different data in each mapped match component. 
     getMatches = () => {
-        axios.get(`/api/match${this.props.user.user_id}`)
+        axios.get(`/api/matches`)
             .then(res => this.setState({ array: res.data }))
             .catch(err => console.log(err))
     };
 
     //on-click deletes match
-    deletePost = (id) => {
-        axios.delete(`/api/match/${id}`)
+    deletePost = () => {
+        axios.delete(`/api/matches`)
         .then(() => {
             this.getMatches();
         })
@@ -44,16 +44,16 @@ class Matches extends Component {
     //adds match to db user_id foreign key
     handleClick = (match) => {
         console.log(this.props)
-        axios.post('/api/match', { id: this.props.user.user_id, match })
+        axios.post('/api/matches', { id: this.props.user.user_id, match })
             .catch(err => console.log(err));
     };
 
 
     render() {
         const mappedMatches = this.state.array.map((index => {
-            return <div>
+            return <div key={index}>
                 <Grid.Column>
-                    <Card key={index}>
+                    <Card >
                         <Image src='https://via.placeholder.com/150' wrapped ui={false} />
                         <Card.Content>
                             <Card.Header>Matthew</Card.Header>

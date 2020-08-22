@@ -21,7 +21,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {getUser} from '../../redux/reducer';
+import {getUser, getProfile} from '../../redux/reducer';
 import './Landing.scss';
 
 class Landing extends Component {

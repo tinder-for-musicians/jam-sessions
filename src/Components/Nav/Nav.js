@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import "./Nav.scss";
 import axios from 'axios';
+import {connect} from 'react-redux';
+import logo from "./jam-session-logo.png"
+import {getProfile, clearUser} from '../../redux/reducer';
 
 class Nav extends Component {
 
@@ -19,7 +22,7 @@ class Nav extends Component {
             <div>
                 <nav id="navbar">
                     <div id="logo-div">
-                        <img src="https://via.placeholder.com/150" alt="logo"/>
+                        <img src={logo} alt="logo"/>
                         <div className="nav-links">
                             <Link to="/dash"><p>Home</p></Link>
                             <Link to="/profile"><p>Profile</p></Link>
@@ -30,7 +33,7 @@ class Nav extends Component {
                     
                     <div className="nav-btn-div"><button className="nav-btn" onClick={this.handleLogout}>Logout</button></div>
                     <div className="nav-photo-div">
-                        <img src="https://via.placeholder.com/150" alt="user face"/>
+                        <img src={this.props.profile.profile_pic} alt="user face"/>
                     </div>
                 </nav>
             </div>
@@ -38,4 +41,5 @@ class Nav extends Component {
     }
 }
  
-export default Nav;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getProfile, clearUser})(Nav);
