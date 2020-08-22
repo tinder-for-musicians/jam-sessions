@@ -3,28 +3,30 @@ SELECT DISTINCT -- N.B. DISTINCT omits duplicate rows in output if matching user
     , u.username
     , u.profile_pic
     , u.bio
-    , DEG_TO_MI() * SQRT(POWER(u.loc_latitude - get_latitude($1), 2) + POWER(u.loc_longitude - get_longitude($1), 2)) AS distance_of_match
+    , DEG_TO_MI() * SQRT(POWER(u.loc_latitude - get_latitude($1), 2) + POWER(u.loc_longitude - get_longitude($1), 2)) AS distance_away_mi
 
+-- source tables
 FROM users AS u
 INNER JOIN profile AS p
     ON u.user_id = p.user_id
+
 WHERE
     -- exclude user's own self from matches list
-        u.user_id != $1
+    u.user_id != $1
 
     -- 1) match on distance from user
     AND    
         CASE
             WHEN $2 IS NULL
-            -- default to <= 10 miles, if no distance indicated in user search
+            -- default to <= DEFAULT_SEARCH_DISTANCE(), if no distance indicated in user search
             THEN u.user_id IN (
                 SELECT user_id
                 FROM users as u
                 WHERE DEG_TO_MI() * SQRT(POWER(get_latitude($1) - u.loc_latitude, 2) + POWER(get_longitude($1) - u.loc_longitude, 2))
-                <= 10.0
+                <= DEFAULT_SEARCH_DISTANCE()
                 AND u.loc_latitude IS NOT NULL AND u.loc_longitude IS NOT NULL -- exclude profiles with no geolocation data populated
                 )
-            -- otherwise, search by indicated search distance
+            -- otherwise, search within indicated search distance
             WHEN $2 IS NOT NULL
             THEN u.user_id IN (
                 SELECT user_id
@@ -76,5 +78,5 @@ WHERE
                 p.experience_id IN (SELECT experience_id FROM experience)
         END
 
-ORDER BY distance_of_match ASC -- sort by nearest-distance profile first
+ORDER BY distance_away_mi ASC -- sort by nearest-distance profile first
 ;
