@@ -23,7 +23,7 @@ CREATE TABLE users (
 	location VARCHAR(200),
 	loc_latitude DECIMAL,
 	loc_longitude DECIMAL,
-	profile_pic TEXT,
+	profile_pic TEXT DEFAULT 'https://firebasestorage.googleapis.com/v0/b/group-jam-session.appspot.com/o/images%2Fprofile-placeholder.png?alt=media&token=c0e37b8a-5aad-469d-95d3-9adfd04378fc', -- default avatar
 	bio VARCHAR(500)
 );
 
