@@ -48,7 +48,9 @@ app.get('/auth/checkuser', authCtrl.checkUser);
 // app.get('/api/instruments', instrCtrl.getInstruments);
 app.get('/api/instruments', instrCtrl.getAttributes);
 
-app.get('/api/search', searchCtrl.searchUsers);
+
+app.get('/api/search', searchCtrl.getUsers);
+app.post('/api/search', searchCtrl.searchUsers);
 
 app.get('/api/profile', profileCtrl.getProfile);
 app.post('/api/profile/instrument', profileCtrl.addInstrument);

@@ -11,7 +11,7 @@ $color5: #C5CBE3;
     
     display: flex;
     flex-direction: column;
-    background-color: $color1;
+    background-color: $color2;
     color: $color3;
     justify-content: center;
     align-items: center;
@@ -27,9 +27,9 @@ $color5: #C5CBE3;
     position: absolute;
     display: flex;
     height: 90px;
-    width: 900px;
+    width: 100%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: $color2;
     padding: 10px;
     top: 222px;
@@ -58,11 +58,9 @@ $color5: #C5CBE3;
     font-size: 18px;
     height: 40px;
     width: 70px;
-    margin-left: 5px;
-    margin-right: 10px;
-
-
+    margin-left: 150px;
 }
+
 .resetbtn{
     position: relative;
     background-color: #707793;
@@ -96,9 +94,14 @@ $color5: #C5CBE3;
     height: 40px;
     width: 80px;
     border: solid;
+    border-width: thin;
     border-radius: 3px;
     border-color: $color4;
+    // background-image: url("https://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/48x48/br_down.png");
+    // background-repeat: no-repeat;
+    // background-position: right center;
 }
+
 .dropdown2{
     display: flex;
     justify-content: center;
@@ -109,6 +112,7 @@ $color5: #C5CBE3;
     height: 40px;
     width: 145px;
     border: solid;
+    border-width: thin;
     border-radius: 3px;
     border-color: $color4;
 }
@@ -122,6 +126,7 @@ $color5: #C5CBE3;
     height: 40px;
     width: 70px;
     border: solid;
+    border-width: thin;
     border-radius: 3px;
     border-color: $color4;
 }
