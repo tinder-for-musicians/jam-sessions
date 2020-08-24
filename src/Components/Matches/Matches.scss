@@ -16,3 +16,53 @@ $color5: #FEFFFF;
     justify-content: center;
     background-color: #C5CBE3;
 }
+
+.chat-display {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 70vw;
+    height: 86.2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 5px solid #3a3a3a;
+}
+
+.message-input {
+    padding: 3px; 
+    position: fixed; 
+    bottom: 0; width: 100%;
+    padding: 10px; 
+    width: 90%;
+    font-size: 25px;
+}
+
+.create-message-section button {
+    position: fixed;
+    width: 10%; 
+    background: rgb(130, 224, 255); 
+    border: none; 
+    padding: 11px 12px;
+    right: 0;
+    bottom: 0px;
+    font-size: 25px;
+}
+
+.messages {
+    list-style-type: none; 
+    height: 93.5%;
+    margin: 0; 
+    padding: 0;
+    overflow: auto;
+}
+
+.messages li {
+    padding: 10px 30px;
+    font-size: 25px;
+}
+
+.messages li:nth-child(odd) {
+    background: #eee;
+    text-align: right;
+}
