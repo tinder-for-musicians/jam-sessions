@@ -3,8 +3,19 @@ $mobile-sizeB: 480px;
 $tablet-size: 768px;
 $desktop-size: 1024px;
 
-$color1: #D79922;
-$color2: #EFE2BA;
-$color3: #F13C20;
-$color4: #4056A1;
-$color5: #C5CBE3;
+// $color1: #D79922;
+// $color2: #EFE2BA;
+// $color3: #F13C20;
+// $color4: #4056A1;
+// $color5: #C5CBE3;
+
+$color1: #17252A;
+$color2: #2B7A78;
+$color3: #3AAFA9;
+$color4: #DEF2F1;
+$color5: #FEFFFF;
+
+body{
+    background-color: $color4;
+    color: $color1;
+  }

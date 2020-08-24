@@ -1,40 +1,49 @@
 
-$color1: #D79922;
-$color2: #EFE2BA;
-$color3: #F13C20;
-$color4: #4056A1;
-$color5: #C5CBE3;
+// $color1: #D79922;
+// $color2: #EFE2BA;
+// $color3: #F13C20;
+// $color4: #4056A1;
+// $color5: #C5CBE3;
+
+$color1: #17252A;
+$color2: #2B7A78;
+$color3: #3AAFA9;
+$color4: #DEF2F1;
+$color5: #FEFFFF;
 
 
 
 .home-body{
-    
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: $color2;
-    color: $color3;
-    justify-content: center;
+    background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v485-nunoon-69-musicnotesbackgroundicon_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=2e753682873bf5b9ce94730db69759ec);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: $color4;
+    color: $color5;
     align-items: center;
-    padding-top: 20px;
+
 }
 
 .intro{
-  color: black;
-  font-size: 30px;
+    position: relative;
+    top: 10px;
+    color: black;
+    font-size: 30px;
 }
 
 .searchcontainer{
-    position: absolute;
+    position: -webkit-sticky; /* Safari & IE */
+    position: sticky;
+    top: 10px;
     display: flex;
-    height: 90px;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
-    background-color: $color2;
-    padding: 10px;
-    top: 222px;
-    box-shadow: 0px 1px 1px 0px #403D39;
-    border-radius: 2px;
+    justify-content: space-around;
+    background-color: transparent;
+    z-index: 1;
 }
 
 .searchinput{
@@ -56,9 +65,10 @@ $color5: #C5CBE3;
     background-color: $color1;
     border: none;
     font-size: 18px;
-    height: 40px;
+    height: 30px;
     width: 70px;
-    margin-left: 150px;
+    border-radius: 2px;
+    // margin-left: 150px;
 }
 
 .resetbtn{
@@ -71,64 +81,18 @@ $color5: #C5CBE3;
     font-size: 16px;
     border: none;
     margin-left: 10px;
+    border-radius: 2px;
 }
 
-.dashboard{
+.dashboard-profile-view{
   position: absolute;
   display: flex;
-  top: 400px;
-  // flex-direction: row;
+  top: 300px;
+  flex-direction: row;
   flex-wrap: wrap;
   width: 100vw;
   align-items: center;
   justify-content: center;
-}
-
-.dropdown1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    background-color: $color5;
-    margin: 3px;
-    height: 40px;
-    width: 80px;
-    border: solid;
-    border-width: thin;
-    border-radius: 3px;
-    border-color: $color4;
-    // background-image: url("https://cdn4.iconfinder.com/data/icons/cc_mono_icon_set/blacks/48x48/br_down.png");
-    // background-repeat: no-repeat;
-    // background-position: right center;
-}
-
-.dropdown2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    background-color: $color5;
-    margin: 3px;
-    height: 40px;
-    width: 145px;
-    border: solid;
-    border-width: thin;
-    border-radius: 3px;
-    border-color: $color4;
-}
-.dropdown3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    background-color: $color5;
-    margin: 3px;
-    height: 40px;
-    width: 70px;
-    border: solid;
-    border-width: thin;
-    border-radius: 3px;
-    border-color: $color4;
 }
 
 .tooltip {
@@ -140,11 +104,11 @@ $color5: #C5CBE3;
     font-size: 30px;
     align-items: center;
     justify-content: center;
-    width: 170px;
-    max-width: 170px;
-    height: 80px;
+    width: 400px;
+    max-width: 400px;
+    height: 400px;
     border-radius: 5px;
-    background-color: white;
+    background-color: $color1;
     background-repeat: no-repeat;
     // position: absolute;
     overflow: hidden;
@@ -157,7 +121,7 @@ $color5: #C5CBE3;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: #ffffff;
+    color: $color2;
     z-index: 20;
     transition: all 0.2s;
     font-weight: 500;
@@ -178,7 +142,7 @@ $color5: #C5CBE3;
     bottom: 0;
     right: 0;
     z-index: 10;
-    background-color: $color5;
+    background-color: $color2;
     transition: all 0.3s ease-out;
     visibility: hidden;
     opacity: 0;
@@ -207,27 +171,25 @@ $color5: #C5CBE3;
     visibility: hidden;
   }
 
-// .tooltip .tooltiptext {
-//   visibility: hidden;
-//   top: -40px;
-//   left: 60px;
-//   width: 40px;
-//   length: 100px;
-//   font-size: 12px;
-//   background-color: $color4;
-//   color: white;
-//   text-align: center;
-//   border-radius: 5px;
-//   position: absolute;
-//   z-index: 1;
-// }
+.tooltip .tooltiptext {
+  visibility: hidden;
+  position: absolute;
+  top: 180px;
+  left: 0px;
+  width: 200px;
+  font-size: 18px;
+  background: $color1;
+  text-align: center;
+  border-radius: 5px;
+  z-index: 1;
+}
 
-// .tooltip:hover .tooltiptext {
-//   visibility: visible;
-//   position: relative;
-//   transition: transform 0.4s ease-out, 
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  position: relative;
+  transition: transform 0.4s ease-out, 
   
-// }
+}
 
 @media(max-width: 769px){
   .searchcontainer{
@@ -242,46 +204,6 @@ $color5: #C5CBE3;
     top: 306px;
     box-shadow: 0px 1px 1px 0px #403D39;
     border-radius: 2px;
-}
-
-.dropdown1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    background-color: $color5;
-    margin: 3px;
-    height: 40px;
-    width: 80px;
-    border: solid;
-    border-radius: 3px;
-    border-color: $color4;
-}
-.dropdown2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    background-color: $color5;
-    margin: 3px;
-    height: 40px;
-    width: 145px;
-    border: solid;
-    border-radius: 3px;
-    border-color: $color4;
-}
-.dropdown3{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    background-color: $color5;
-    margin: 3px;
-    height: 40px;
-    width: 70px;
-    border: solid;
-    border-radius: 3px;
-    border-color: $color4;
 }
 
 }
