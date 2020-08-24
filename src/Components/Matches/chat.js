@@ -1,23 +1,32 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import socket from 'socket.io-client';
+import {connect} from 'react-redux';
 
 const client = socket(process.env.REACT_APP_IO_PORT);
 
-const Chat = () => {
+const Chat = props => {
     const [chatMessage, setChatMessage] = useState('');
     const [newMessage, setNewMessage] = useState('');
     const [listMessages, setListMessages] = useState([]);
     const [mappedMessages, setMappedMessages] = useState([]);
+    // const [username, setUsername] = useState('')
 
     useEffect(() => {
-        client.on('newMessage', msg => {
-            console.log(msg);
-            setNewMessage(msg);
-        });
+        const abortController = new AbortController();
+        async function getNewMessage() {
+            await client.on('newMessage', msg => {
+                console.log(msg);
+                setNewMessage(msg);
+            });
+            return function cleanup() {
+                abortController.abort();
+            }
+        }
+        getNewMessage();
     }, []);
 
     useEffect(() => {
-        console.log(newMessage, listMessages);
+        // console.log(newMessage, listMessages);
         setListMessages([...listMessages, newMessage]);
     }, [newMessage]);
 
@@ -28,9 +37,11 @@ const Chat = () => {
           </li>
         )));
       }, [listMessages]);
-      
-    const send = () => {
-        client.emit('chatMessage', chatMessage);
+
+    const send = async () => {
+        const combinedMessage = `${props.user.username}: ${chatMessage}`
+        await client.emit('chatMessage', combinedMessage);
+        // console.log(username);
         setChatMessage('');
     }
 
@@ -47,4 +58,11 @@ const Chat = () => {
     )
 }
 
-export default Chat;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+
+export default connect(mapStateToProps)(Chat);
