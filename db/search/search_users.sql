@@ -10,6 +10,7 @@ FROM users AS u
 INNER JOIN profile AS p
     ON u.user_id = p.user_id
 
+-- search filter conditions
 WHERE
     -- exclude user's own self from matches list
     u.user_id != $1
@@ -17,8 +18,8 @@ WHERE
     -- 1) match on distance from user
     AND    
         CASE
+            -- 1A) default to <= DEFAULT_SEARCH_DISTANCE(), if no distance indicated in user search
             WHEN $2 IS NULL
-            -- default to <= DEFAULT_SEARCH_DISTANCE(), if no distance indicated in user search
             THEN u.user_id IN (
                 SELECT user_id
                 FROM users as u
@@ -26,7 +27,7 @@ WHERE
                 <= DEFAULT_SEARCH_DISTANCE()
                 AND u.loc_latitude IS NOT NULL AND u.loc_longitude IS NOT NULL -- exclude profiles with no geolocation data populated
                 )
-            -- otherwise, search within indicated search distance
+            -- 1B) otherwise, search within indicated search distance
             WHEN $2 IS NOT NULL
             THEN u.user_id IN (
                 SELECT user_id
@@ -40,10 +41,10 @@ WHERE
     -- 2) match on instrument
     AND
         CASE
-            -- by provided instrument, if specified
+            -- 2A) by provided instrument, if specified
             WHEN $3 IS NOT NULL
             THEN p.instrument_id = (SELECT instrument_id FROM instrument WHERE instrument_name = $3)
-            -- otherwise, all instruments
+            -- 2B) otherwise, all instruments
             WHEN $3 IS NULL 
             THEN 
             p.instrument_id IN (SELECT instrument_id FROM instrument)
@@ -52,25 +53,25 @@ WHERE
     -- 3) match level and/or experience conditionally on...
     AND
         CASE
-            -- ...provided both level and experience
+            -- 3A) ...provided both level and experience
             WHEN $4 IS NOT NULL AND $5 IS NOT NULL
             THEN
                 p.level_id = (SELECT level_id FROM levels WHERE level_name = $4)
                 AND
                 p.experience_id = (SELECT experience_id FROM experience WHERE experience_years = $5)
-            -- ...provided level only
+            -- 3B) ...provided level only
             WHEN $4 IS NOT NULL AND $5 IS NULL
             THEN
                 p.level_id = (SELECT level_id FROM levels WHERE level_name = $4)
                 AND
                 p.experience_id IN (SELECT experience_id FROM experience)
-            -- ...provided experience only
+            -- 3C) ...provided experience only
             WHEN $4 IS NULL AND $5 IS NOT NULL
             THEN 
                 p.level_id IN (SELECT level_id FROM levels)
                 AND
                 p.experience_id = (SELECT experience_id FROM experience WHERE experience_years = $5)
-            -- neither level nor experience (i.e., include ALL levels and ALL experience)
+            -- 3D) ...neither level nor experience (i.e., include ALL levels and ALL experience)
             WHEN $4 IS NULL AND $5 IS NULL
             THEN 
                 p.level_id IN (SELECT level_id FROM levels)
