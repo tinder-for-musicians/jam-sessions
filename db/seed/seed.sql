@@ -50,3 +50,9 @@ CREATE TABLE matches (
 	is_blocked BOOLEAN DEFAULT FALSE NOT NULL,
 	PRIMARY KEY(user_id, match_id)
 );
+
+CREATE TABLE distance (
+	distance_id SERIAL PRIMARY KEY,
+	distance_mi DECIMAL,
+	distance_text TEXT
+);

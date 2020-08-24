@@ -31,3 +31,15 @@ VALUES
 ('5-10 years'),
 ('10+ years')
 ;
+
+INSERT INTO distance
+(distance_mi, distance_text)
+VALUES
+(3.0, '3 miles'),
+(5.0, '5 miles'),
+(10.0, '10 miles'),
+(15.0, '15 miles'),
+(20.0, '20 miles'),
+(25.0, '25 miles'),
+(9999.0, '30+ miles') -- all distances away
+;

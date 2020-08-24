@@ -93,16 +93,16 @@ class Home extends Component {
     };
 
     getInstruments = () => {
-        axios.get('api/instruments')
+        axios.get('api/search/attributes')
             .then(res => {
                 // console.log(res.data)
-                this.setState({
-                    instrument: res.data.instruments,
-                    level: res.data.levels,
-                    experience: res.data.experience_years
-                })
-
-            }
+                    this.setState({
+                        instrument: res.data.instruments,
+                        level: res.data.levels,
+                        experience: res.data.experience_years,
+                        distance: res.data.distances
+                    })
+                }
             )
             .catch(err => console.log(err))
     }
@@ -111,7 +111,7 @@ class Home extends Component {
         const { instrument, level, distance, experience } = this.state;
         const mappedMatches = this.state.filteredMatches
             .map((match) => {
-                const { user_id, username, profile_pic, bio, distance_of_match } = match
+                const { user_id, username, profile_pic, bio, distance_away_mi } = match
                 console.log(match)
                 return (
                     <div key={user_id}>
