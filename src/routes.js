@@ -6,7 +6,7 @@ import Home from './Components/Home/Home';
 import Profile from './Components/Profile/Profile';
 import Matches from './Components/Matches/Matches';
 import NotFound from "./Components/Home/NotFound";
-import Chat from './Components/Matches/Chat';
+import Chat from './Components/Matches/chat';
 
 
 export default (
