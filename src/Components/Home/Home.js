@@ -122,6 +122,7 @@ class Home extends Component {
                             }}
                             className='tooltip'>
                             <ToastsContainer store={ToastsStore} />
+                            <div className = 'tooltiptext'>Click to Match</div>
 
 
                         </span>
@@ -183,6 +184,7 @@ class Home extends Component {
                 'home-body'>
                <p className = 'intro'>Search people to jam with</p>
                 <section className='searchcontainer'>
+                    
                     <Dropdown
                         placeholder='Select Instrument'
                         fluid
