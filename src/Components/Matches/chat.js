@@ -4,29 +4,40 @@ import socket from 'socket.io-client';
 const client = socket(process.env.REACT_APP_IO_PORT);
 
 const Chat = () => {
-
-    // const [socketPort] = useState(process.env.REACT_APP_IO_PORT);
     const [chatMessage, setChatMessage] = useState('');
+    const [newMessage, setNewMessage] = useState('');
     const [listMessages, setListMessages] = useState([]);
+    const [mappedMessages, setMappedMessages] = useState([]);
 
     useEffect(() => {
-        // console.log(socketPort);
-        // const client = socket(socketPort);
-        client.on('chatMessage', msg => {
-            setListMessages(listMessages.push(msg));
+        client.on('newMessage', msg => {
+            console.log(msg);
+            setNewMessage(msg);
         });
-    });
+    }, []);
 
+    useEffect(() => {
+        console.log(newMessage, listMessages);
+        setListMessages([...listMessages, newMessage]);
+    }, [newMessage]);
+
+    useEffect(() => {
+        setMappedMessages(listMessages.map((element, index) => (
+          <li key={index}>
+            {element}
+          </li>
+        )));
+      }, [listMessages]);
+      
     const send = () => {
-        // const client = socket(socketPort);
-        client.emit('Chat Message', chatMessage);
+        client.emit('chatMessage', chatMessage);
         setChatMessage('');
     }
 
     return (
         <div className='chat-display'>
             <ul className='messages'>
-                {listMessages}
+                {mappedMessages}
             </ul>
             <section className='create-message-section'>
                 <input className='message-input' value={chatMessage} onChange={e => setChatMessage(e.target.value)} />
