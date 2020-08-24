@@ -51,7 +51,7 @@ class Matches extends Component {
 
     render() {
         const mappedMatches = this.state.array.map((index => {
-            return <div key={index}>
+            return <div key={index} className="card-wrapper">
                 <Grid.Column>
                     <Card >
                         <Image src='https://via.placeholder.com/150' wrapped ui={false} />

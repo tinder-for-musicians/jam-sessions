@@ -1,14 +1,11 @@
-
-$color1: #17252A;
-$color2: #2B7A78;
-$color3: #3AAFA9;
-$color4: #DEF2F1;
-$color5: #FEFFFF;
-
+$color1: #0B0C10;
+$color2: #1F2833;
+$color3: #C5C6C7;
+$color4: #66FCF1;
+$color5: #45A29E;
 
 #navbar {
-    background-color: $color3;
-    // background-color: #4056A1;
+    background-color: $color2;
     display: flex;
     flex-wrap: wrap;
     height: 100px;
@@ -46,11 +43,10 @@ $color5: #FEFFFF;
         align-content: center;
         align-items: center;
         margin: 10px;
-        color: white;
+        color: $color3;
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        // background: #D79922;
-        background-color: $color1;
+        background: $color5;
         width: 100px;
         height: 40px;
     }
@@ -62,7 +58,6 @@ $color5: #FEFFFF;
         justify-content: flex-end;
         p {
             color: $color5;
-            // color: #F13C20;
             display: flex;
             margin: 5px;
             font-size: 23px;
@@ -91,3 +86,5 @@ $color5: #FEFFFF;
 a {
     text-decoration: none;
 }
+
+

@@ -91,16 +91,16 @@ const Profile = (props) => {
                     firstName={firstName}
                     lastName={lastName}
                     username={username} />
-                    <Button color='orange' onClick={uploadPic} >Add Profile Photo</Button>
+                    <Button color='gray' onClick={uploadPic} >Add Profile Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile} />
-                    <Button color='orange' onClick={handleFireBaseUpload}>Submit</Button>
+                    <Button color='gray' onClick={handleFireBaseUpload}>Submit</Button>
                 </div>
             </div>
             <div className="bio-div" >
                 <Bio />
             </div>
             <div>
-                <Button color='orange'>Add instrument</Button>
+                <Button color='gray'>Add instrument</Button>
             </div>
 
         </div>
