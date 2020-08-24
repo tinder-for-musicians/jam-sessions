@@ -1,8 +1,17 @@
+
+$color1: #17252A;
+$color2: #2B7A78;
+$color3: #3AAFA9;
+$color4: #DEF2F1;
+$color5: #FEFFFF;
+
+
 #navbar {
-    background-color: #4056A1;
+    background-color: $color3;
+    // background-color: #4056A1;
     display: flex;
     flex-wrap: wrap;
-    height: 130px;
+    height: 100px;
     justify-content: flex-end;
 
     .nav-wrapper {
@@ -40,7 +49,8 @@
         color: white;
         border-radius: 4px;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-        background: #D79922;
+        // background: #D79922;
+        background-color: $color1;
         width: 100px;
         height: 40px;
     }
@@ -51,7 +61,8 @@
         align-items: center;
         justify-content: flex-end;
         p {
-            color: #F13C20;
+            color: $color5;
+            // color: #F13C20;
             display: flex;
             margin: 5px;
             font-size: 23px;

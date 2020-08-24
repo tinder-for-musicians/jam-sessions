@@ -1,9 +1,17 @@
+
+$color1: #17252A;
+$color2: #2B7A78;
+$color3: #3AAFA9;
+$color4: #DEF2F1;
+$color5: #FEFFFF;
+
 .profile-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    background-color: #EFE2BA;
+    background-color: $color4;
+    // background-color: #EFE2BA;
     // margin: 10px;
     height: 100vh;
 }
@@ -28,7 +36,7 @@
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    background: #D79922;
+    background: $color5;
 }
 
 .profile-user-info {
