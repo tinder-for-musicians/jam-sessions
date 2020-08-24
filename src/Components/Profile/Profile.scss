@@ -1,16 +1,23 @@
+$color1: #0B0C10;
+$color2: #1F2833;
+$color3: #C5C6C7;
+$color4: #66FCF1;
+$color5: #45A29E;
+
+
 .profile-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    background-color: #EFE2BA;
+    background-color: $color3;
     // margin: 10px;
     height: 100vh;
 }
 
 .profile-img-wrapper {
     display: flex;
-    background-color: #C5CBE3;
+    background-color: $color5;
     margin: 10px;
 }
 
@@ -28,7 +35,7 @@
     color: white;
     border-radius: 4px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    background: #D79922;
+    background: $color3;
 }
 
 .profile-user-info {
@@ -45,10 +52,10 @@
 }
 
 .bio-div {
-    background-color: #C5CBE3;
+    background-color: $color5;
 }
 
-.ui.orange.button {
+.ui.gray.button {
     margin: 5px;
 }
 
