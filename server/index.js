@@ -33,7 +33,7 @@ io.on('connection', (client) => {
     console.log('A user has connected');
     client.on('chatMessage', (msg) => {
         console.log(msg);
-        io.emit('chatMessage', msg);
+        io.emit('newMessage', msg);
     });
     client.on('disconnect', () => {
         console.log('User has disconnected');
