@@ -37,8 +37,6 @@ module.exports = {
         }
         
         req.session.user = existingUser;
-        console.log(req.session.user.user_id)
-        console.log(existingUser)
 
         return res.status(200).send(existingUser);
     },

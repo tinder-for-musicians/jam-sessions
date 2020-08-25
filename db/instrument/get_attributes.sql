@@ -11,4 +11,8 @@ SELECT
         SELECT level_name
         FROM levels
         ORDER BY level_id) AS levels
+    , ARRAY(
+        SELECT distance_text
+        FROM distance
+        ORDER BY distance_mi) AS distances
 ;
