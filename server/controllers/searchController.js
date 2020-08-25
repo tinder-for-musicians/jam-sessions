@@ -1,6 +1,5 @@
 module.exports = {
     getUsers: async (req, res) => {
-        
         const user_id = req.session.user.user_id;
         
         let distance, instrument, level, experience;
