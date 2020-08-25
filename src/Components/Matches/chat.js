@@ -3,7 +3,7 @@ import socket from 'socket.io-client';
 import {connect} from 'react-redux';
 
 const Chat = props => {
-    const [client, setClient] = useState(() => {
+    const [client] = useState(() => {
         const initialState = socket(process.env.REACT_APP_IO_PORT);
         return initialState;
     });
@@ -11,7 +11,6 @@ const Chat = props => {
     const [newMessage, setNewMessage] = useState('');
     const [listMessages, setListMessages] = useState([]);
     const [mappedMessages, setMappedMessages] = useState([]);
-    // const [username, setUsername] = useState('')
 
     useEffect(() => {
         if (client) {
@@ -41,7 +40,7 @@ const Chat = props => {
       }, [listMessages]);
 
     const send = async () => {
-        const combinedMessage = `${props.user.username}: ${chatMessage}`
+        const combinedMessage = `${props.user.username}: ${chatMessage}`;
         await client.emit('chatMessage', combinedMessage);
         setChatMessage('');
     }
