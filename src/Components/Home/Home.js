@@ -9,6 +9,7 @@ import axios from 'axios';
 
 
 const Home = (props) => {
+    // component state variables
     const [instrumentOptions, setInstrumentOptions] = useState([]);
     const [levelOptions, setLevelOptions] = useState([]);
     const [experienceOptions, setExperienceOptions] = useState([]);
@@ -19,6 +20,7 @@ const Home = (props) => {
     const [experience, setExperience] = useState('');
     const [distance, setDistance] = useState('');
 
+    // initial mount effects
     useEffect(() => {
         //bumps back to login after edits /no user info
         axios.get('/auth/checkuser')
@@ -27,13 +29,10 @@ const Home = (props) => {
 
         // query all profiles within 15 miles on initial render
         axios.get(`/api/search`)
-        .then(res => {
-            // console.log(res.data);
-            setFilteredMatches(res.data);
-        })
+        .then(res => setFilteredMatches(res.data))
         .catch(err => console.log(err));
 
-        // query all dropdown attributes on initial render
+        // // query all dropdown attributes on initial render
         axios.get('api/search/attributes')
         .then(res => {
             setInstrumentOptions(res.data.instruments);
@@ -44,44 +43,72 @@ const Home = (props) => {
         .catch(err => console.log(err));
     }, [])
 
-    const mappedMatches = filteredMatches
-        .map((match) => {
-            const { user_id, username, profile_pic, bio, distance_away_mi } = match
-            return (
-                <div key={user_id}>
-                    <span
-                        onClick={() => {
-                            handleClick();
-                            ToastsStore.success("Matched!")
-                        }}
-                        className='tooltip'>
-                        <ToastsContainer store={ToastsStore} />
-                        <div className = 'tooltiptext'>Click to Match</div>
-                        <img src={profile_pic} alt={username} width="100" height ="100"/>
-                        <p>{username}</p>
-                        <p>{bio}</p>
-                        <p>{Math.ceil(distance_away_mi)} mi</p>
-                    </span>
-                </div>
-            )
-        })
+    // query dropdowns
+    useEffect(() => {
+        if (!(instrumentOptions && levelOptions && experienceOptions && distanceOptions)) {
+            axios.get('api/search/attributes')
+            .then(res => {
+                setInstrumentOptions(res.data.instruments);
+                setLevelOptions(res.data.levels);
+                setExperienceOptions(res.data.experience_years);
+                setDistanceOptions(res.data.distances)
+            })
+            .catch(err => console.log(err));
+        }
+    }, [instrumentOptions, levelOptions, experienceOptions, distanceOptions])
 
+    // event handlers
     const handleSearch = () => {
-        // TO-DO
+        axios.post(`/api/search`, {distance, instrument, level, experience})
+        .then(res => setFilteredMatches(res.data))
+        .catch(err => console.log(err));
+    }
+
+    const handleReset = () => {
+        for(let i = 0; i <= 1; i++) {
+            setDistance('');
+            setInstrument('');
+            setLevel('');
+            setExperience('');
+        }
     }
 
     const handleClick = () => {
         // TO-DO
     }
 
-    const handleReset = () => {
-        // TO-DO
-    }
+    // if no fields populated, re-render default search (e.g., after Reset)
+    useEffect(() => {
+        if (!(instrument || level || experience || distance)) {
+            handleReset();
+            handleSearch();
+        }
+    }, [instrument, level, experience, distance])
 
-    const setField = (field) => {
-        // TO-DO
-    }
+    // map filtered matches
+    const mappedMatches = filteredMatches
+    .map((match) => {
+        const { user_id, username, profile_pic, bio, distance_away_mi } = match
+        return (
+            <div key={user_id}>
+                <span
+                    onClick={() => {
+                        handleClick();
+                        ToastsStore.success("Matched!")
+                    }}
+                    className='tooltip'>
+                    <ToastsContainer store={ToastsStore} />
+                    <div className = 'tooltiptext'>Click to Match</div>
+                    <img src={profile_pic} alt={username} width="100" height ="100"/>
+                    <p>{username}</p>
+                    <p>{bio}</p>
+                    <p>{`${Math.ceil(distance_away_mi)} mile(s) away`}</p>
+                </span>
+            </div>
+        )
+    })
 
+    // populate dropdown options via mapping
     const mappedInstrumentOptions = [{
         key: 'select instrument',
         text: 'select instrument',
@@ -146,33 +173,44 @@ const Home = (props) => {
                     className='options-instrument'
                     placeholder='Select Instrument'
                     fluid
-                    onChange={() => setField("instrument")}
+                    onChange={(_e, { value }) => setInstrument(value)}
+                    value={instrument}
                     search
                     selection
+                    clearable
                     options={mappedInstrumentOptions}
                 />
                 <Dropdown
+                    className='options-level'
                     placeholder='Select Level'
                     fluid
-                    onChange={() => setField('level')}
+                    onChange={(_e, { value }) => setLevel(value)}
+                    value={level}
                     search
                     selection
+                    clearable
                     options={mappedLevelOptions}
                 />
                 <Dropdown
+                    className='options-experience'
                     placeholder='Select Experience'
                     fluid
-                    onChange={() => setField('experience')}
+                    onChange={(_e, { value }) => setExperience(value)}
+                    value={experience}
                     search
                     selection
+                    clearable
                     options={mappedExperienceOptions}
                 />
                 <Dropdown
+                    className='options-distance'
                     placeholder='Select Distance'
                     fluid
-                    onChange={() => setField('distance')}
+                    onChange={(_e, { value }) => setDistance(value)}
+                    value={distance}
                     search
                     selection
+                    clearable
                     options={mappedDistanceOptions}
                 />
                 <button onClick={handleSearch}

@@ -26,6 +26,20 @@ $$
 LANGUAGE plpgsql;
 
 
+CREATE FUNCTION get_search_distance(search_parameter TEXT)
+RETURNS DECIMAL
+AS
+$$
+DECLARE
+    search_distance DECIMAL;
+BEGIN
+    SELECT distance_mi INTO search_distance FROM distance WHERE distance_text = search_parameter;
+    RETURN search_distance;
+END
+$$
+LANGUAGE plpgsql;
+
+
 CREATE FUNCTION DEG_TO_MI()
 RETURNS DECIMAL
 AS
