@@ -33,7 +33,7 @@ WHERE
                 SELECT user_id
                 FROM users as u
                 WHERE DEG_TO_MI() * SQRT(POWER(get_latitude($1) - u.loc_latitude, 2) + POWER(get_longitude($1) - u.loc_longitude, 2))
-                <= $2
+                <= get_search_distance($2)
                 AND u.loc_latitude IS NOT NULL AND u.loc_longitude IS NOT NULL -- exclude profiles with no geolocation data populated
                 )
             END
