@@ -54,15 +54,23 @@ $color5: #FEFFFF;
     height: 93.5%;
     margin: 0; 
     padding: 0;
-    overflow: auto;
+    overflow-y: scroll;
+    overscroll-behavior-y: contain;
 }
 
 .messages li {
     padding: 10px 30px;
     font-size: 25px;
+    overflow-anchor: none;
 }
 
 .messages li:nth-child(odd) {
     background: #eee;
     text-align: right;
+}
+
+.messages > li:last-child {
+    padding: 50px 80px;
+    background-color: #ffffff;
+    overflow-anchor: auto;
 }
