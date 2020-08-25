@@ -1,6 +1,5 @@
 module.exports = {
     getUsers: async (req, res) => {
-        
         const user_id = req.session.user.user_id;
         
         let distance, instrument, level, experience;
@@ -13,8 +12,18 @@ module.exports = {
             .catch(err => res.status(400).send(err));
     },
 
+    getAttributes: async (req, res) => {
+        const db = req.app.get('db');
+
+        await db.instrument.get_attributes()
+            .then(response => {
+                res.status(200).send(response[0]);
+            })
+            .catch(() => res.sendStatus(500));
+    },
+
     searchUsers: async (req, res) => {
-        console.log(req.session.user)
+        // console.log(req.session.user)
         const user_id = req.session.user.user_id;
         console.log(user_id)
         let {distance, instrument, level, experience} = req.body;
