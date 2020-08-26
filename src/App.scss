@@ -15,7 +15,13 @@ $color3: #3AAFA9;
 $color4: #DEF2F1;
 $color5: #FEFFFF;
 
-body{
+body {
     background-color: $color4;
     color: $color1;
+  }
+
+  @media (min-width: 200px) and (max-width: 780px) {
+    .nav-links {
+      display: none;
+    }
   }

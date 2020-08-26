@@ -5,9 +5,12 @@ $color4: #66FCF1;
 $color5: #45A29E;
 
 
+// DESKTOP NAVBAR STYLING // 
+
 // #nav-wrapper{
 //     background-color: gray;
 // }
+
 #navbar {
     background-color: $color2;
     display: flex;
@@ -26,10 +29,10 @@ $color5: #45A29E;
         flex-grow: 1;
         img {
             display: flex;
-            padding-top: 5px;
+            // padding-top: 5px;
             margin-left: 15px;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 30%;
         }
     }
@@ -49,7 +52,6 @@ $color5: #45A29E;
         margin: 10px;
         color: $color3;
         border-radius: 4px;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         background: $color5;
         width: 100px;
         height: 40px;
@@ -72,8 +74,8 @@ $color5: #45A29E;
     .nav-photo-div {
         display: flex;
         justify-content: flex-end;
-        width: 160px;
-        height: 120px;
+        width: 130px;
+        height: 95px;
         margin: 5px;
         img {
             display: flex;
@@ -83,6 +85,15 @@ $color5: #45A29E;
             width: inherit;
             height: inherit;
         }
+    }
+
+    .desktop-nav {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        flex-wrap: wrap;
     }
 
 }
@@ -95,12 +106,21 @@ a {
 }
 
 
-@media(max-width: 769px){
-    .desktop-nav{
+// MOBILE NAVBAR STYLING //
+
+@media (max-width: 785px) {
+
+    #navbar {
+    div.desktop-nav > div.nav-links {
+        display: none;
+    }
+}
+
+    #navbar > div.mobile-display {
         display: none;
     }
 
-    .header-container{
+    .header-container {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -130,7 +150,7 @@ a {
         // z-index: 1;
     }
 
-    .dropdown{
+    .dropdown {
         display: flex;
         color: black;
         z-index: 1;
@@ -158,7 +178,7 @@ a {
         //   z-index: 1;
     }
 
-    ul{
+    ul {
         // position: absolute;
         // right: 30px;
         // top: 50px;
