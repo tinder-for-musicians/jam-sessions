@@ -15,7 +15,7 @@ export default (
         <Route path ='/matches' component={Matches} />
         <Route path ='/profile' component={Profile} />
         <Route path = '/dash' component={Home}/>
-        <Route path='/chat' component={Chat}/>
+        <Route path='/chat/:id' component={Chat}/>
         <Route render={() => {
             return <NotFound />
         }} />
