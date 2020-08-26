@@ -88,7 +88,7 @@ const Home = (props) => {
     // map filtered matches
     const mappedMatches = filteredMatches
     .map((match) => {
-        const { user_id, username, profile_pic, bio, distance_away_mi } = match
+        const { user_id, username, profile_pic, bio, distance_away_mi, instrument, experience, level } = match
         return (
             <div key={user_id}>
                 <span
@@ -99,10 +99,15 @@ const Home = (props) => {
                     className='tooltip'>
                     <ToastsContainer store={ToastsStore} />
                     <div className = 'tooltiptext'>Click to Match</div>
-                    <img src={profile_pic} alt={username} width="100" height ="100"/>
-                    <p>{username}</p>
-                    <p>{bio}</p>
-                    <p>{`${Math.ceil(distance_away_mi)} mile(s) away`}</p>
+                    <img 
+                    className = 'profile-pic'
+                    src={profile_pic} alt={username} width="100" height ="100"/>
+                    <p className = 'username'>{username}</p>
+                    <p className = 'distance'>{`${Math.ceil(distance_away_mi)} mile(s) away`}</p>
+                    <p className = 'bio'>{bio}</p>
+                    <p className = 'instruments'>{instrument}</p>
+                    <p className = 'level'>{level}</p>
+                    <p className = 'experience'>{experience}</p>
                 </span>
             </div>
         )
