@@ -29,10 +29,10 @@ $color5: #45A29E;
         flex-grow: 1;
         img {
             display: flex;
-            padding-top: 5px;
+            // padding-top: 5px;
             margin-left: 15px;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 30%;
         }
     }
@@ -74,8 +74,8 @@ $color5: #45A29E;
     .nav-photo-div {
         display: flex;
         justify-content: flex-end;
-        width: 160px;
-        height: 120px;
+        width: 130px;
+        height: 95px;
         margin: 5px;
         img {
             display: flex;
@@ -85,6 +85,15 @@ $color5: #45A29E;
             width: inherit;
             height: inherit;
         }
+    }
+
+    .desktop-nav {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        flex-wrap: wrap;
     }
 
 }
@@ -99,10 +108,13 @@ a {
 
 // MOBILE NAVBAR STYLING //
 
-@media (max-width: 769px) {
-    .desktop-nav {
+@media (max-width: 785px) {
+
+    #navbar {
+    div.desktop-nav > div.nav-links {
         display: none;
     }
+}
 
     #navbar > div.mobile-display {
         display: none;
