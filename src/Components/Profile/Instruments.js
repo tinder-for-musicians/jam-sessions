@@ -1,39 +1,55 @@
 import React, { Component } from 'react'
 import { Grid, Menu, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux';
-import {getUser} from '../../redux/reducer';
+import {getUser, getProfile} from '../../redux/reducer';
 import "./Profile.scss";
 
 class Bio extends Component {
   constructor(props){
   super(props)
-  this.state={
+  this.state= {
     activeItem: '',
-    instruments: []
+    instrumentsState: []
   }
-  }
+}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+componentDidMount() {
+
+}
+
+  handleItemClick = (e, { name }) =>  {
+  this.setState({ activeItem: name })
+  this.mappedInstruments();
+}
+
+  
 
   handleActiveItem = () => {
     console.log(this.props.user)
     if (this.state.activeItem === 'bio') {
       console.log(this.props.user)
       return <p>{this.props.user.bio}</p>;
-    } else if (this.state.activeItem === 'instrument') {
-      return <p>{this.props.user.user_instruments}</p>;
+    } else if (this.state.activeItem === 'instruments') {
+    return <p>{this.mappedInstruments()}</p>;
     } else {
       return ("Nothing works");
     }
   }
 
-  // mappedInstruments = () => {
-  //   this.state.instruments = this.props.user.user_instruments.map( elem => {
-  //     console.log(elem[1])
-  //     return elem[1];
-      
-  //   })
-  // }
+  mappedInstruments = () => {
+
+    const instrumentsFromStore = this.props.profile.user_instruments;
+
+    const selectedInstruments = instrumentsFromStore.map(((index, key) => {
+          return <li key={key}>{index[0]}</li>;
+        }
+      ))
+
+    return selectedInstruments;
+    
+  }
+
+
 
   render() {
     const { activeItem } = this.state
@@ -50,17 +66,7 @@ class Bio extends Component {
               name='instrument'
               active={activeItem === 'instrument'}
               onClick={this.handleItemClick}
-            />
-            {/* <Menu.Item
-              name='companies'
-              active={activeItem === 'companies'}
-              onClick={this.handleItemClick}
-            /> */}
-            {/* <Menu.Item
-              name='links'
-              active={activeItem === 'links'}
-              onClick={this.handleItemClick}
-            /> */}
+            />   
           </Menu>
         </Grid.Column>
 
@@ -76,4 +82,4 @@ class Bio extends Component {
 }
 
 const mapStateToProps = reduxState => reduxState;
-export default connect(mapStateToProps, {getUser})(Bio);
+export default connect(mapStateToProps, {getUser, getProfile})(Bio);
