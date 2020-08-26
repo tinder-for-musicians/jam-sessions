@@ -4,7 +4,7 @@ const massive = require('massive');
 const io = require('socket.io')();
 const session = require('express-session');
 const authCtrl = require('./controllers/authController');
-const instrCtrl = require('./controllers/instrController');
+// const instrCtrl = require('./controllers/instrController');
 const profileCtrl = require('./controllers/profileController');
 const searchCtrl = require('./controllers/searchController');
 const matchCtrl = require('./controllers/matchController');
@@ -46,10 +46,11 @@ app.get('/auth/logout', authCtrl.logout);
 app.get('/auth/checkuser', authCtrl.checkUser);
 
 // app.get('/api/instruments', instrCtrl.getInstruments);
-app.get('/api/instruments', instrCtrl.getAttributes);
+// app.get('/api/instruments', instrCtrl.getAttributes);
 
 
 app.get('/api/search', searchCtrl.getUsers);
+app.get('/api/search/attributes', searchCtrl.getAttributes);
 app.post('/api/search', searchCtrl.searchUsers);
 
 app.get('/api/profile', profileCtrl.getProfile);
