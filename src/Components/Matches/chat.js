@@ -8,7 +8,7 @@ const Chat = props => {
         return initialState;
     });
     const [chatMessage, setChatMessage] = useState('');
-    const [newMessage, setNewMessage] = useState('');
+    const [newMessage, setNewMessage] = useState({});
     const [listMessages, setListMessages] = useState([]);
     const [mappedMessages, setMappedMessages] = useState([]);
 
@@ -17,7 +17,12 @@ const Chat = props => {
             const abortController = new AbortController();
             async function getNewMessage() {
                 await client.on('newMessage', msg => {
-                    setNewMessage(msg);
+                    if (msg.chatroom_id === props.match.params.id) {
+                        setNewMessage({
+                            username: msg.username,
+                            message: msg.message
+                        })
+                    }
                 });
                 return function cleanup() {
                     abortController.abort();
@@ -28,28 +33,57 @@ const Chat = props => {
     }, []);
 
     useEffect(() => {
-        setListMessages([...listMessages, newMessage]);
+        if (newMessage.message) {
+            setListMessages([...listMessages, newMessage]);
+        }
     }, [newMessage]);
 
     useEffect(() => {
-        setMappedMessages(listMessages.map((element, index) => (
-          <li key={index}>
-            {element}
-          </li>
-        )));
-      }, [listMessages]);
+        if (listMessages !== []) {
+            setMappedMessages(listMessages.map((element, index) => {
+                if (element.username === props.user.username) {
+                    console.log(element);
+                    return (
+                        <div className='myMessage' key={index}>
+                            <li>
+                                <p>Me:</p>
+                                <p>{element.message}</p>
+                            </li>
+                        </div>
+                    )
+                }
+                else {
+                    return (
+                        <div className='notMyMessage' key={index}>
+                            <li>
+                                <p>{element.username}:</p>
+                                <p>{element.message}</p>
+                            </li>
+                        </div>
+                    )
+                }               
+            }))       
+        }
+    }, [listMessages]);
 
     const send = async () => {
-        const combinedMessage = `${props.user.username}: ${chatMessage}`;
-        await client.emit('chatMessage', combinedMessage);
+        const combined = {
+            chatroom_id: props.match.params.id,
+            username: props.user.username,
+            message: chatMessage
+        };
+        await client.emit('chatMessage', combined);
         setChatMessage('');
     }
 
     return (
             <div className='chat-display'>
                 <ul className='messages'>
-                    {mappedMessages}
-                    <li></li>
+                    {mappedMessages
+                    ?<div>{mappedMessages}</div>
+                    :null
+                    }
+                    <div></div>
                 </ul>
                 <section className='create-message-section'>
                     <input className='message-input' value={chatMessage} onChange={e => setChatMessage(e.target.value)} />

@@ -30,16 +30,19 @@ const Matches = () => {
     useEffect(() => {
         setMappedMatches(myMatches.map((match, index) => {
             console.log(match)
-                const mappedInstruments = myMatches.user_instruments.map((instrument, index) => {
+                const mappedInstruments = match.user_instruments.map((instrument, index) => {
                     console.log(instrument);
                     return <div key={index}>
-                        <p>{instrument}</p>
+                        <ul>{instrument[0]}
+                            <li>{instrument[1]}</li>
+                            <li>{instrument[2]}</li>
+                        </ul>
                     </div>
                 });
                 return <div key={index} className="card-wrapper">
                     <Grid.Column>
-                        <Link to={`/chat/`}><Card >
-                            <Image src={match.profile_pic} wrapped ui={false} />
+                        <Link to={`/chat/${match.chatroom_id}`}><Card >
+                            <div className='match-image-box'><Image className='match-image' src={match.profile_pic} wrapped ui={false} /></div>
                             <Card.Content>
                                 <Card.Header>{match.username}</Card.Header>
                                 <Card.Meta>
@@ -53,6 +56,7 @@ const Matches = () => {
                                 <a>
                                     <Icon name='music' />
                                     Instruments
+                                    {mappedInstruments}
                                     {/* <img src={require("../icons/accordion.png")} alt="banjo" /> */}
                                 </a>
                             </Card.Content>

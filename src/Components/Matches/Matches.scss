@@ -17,6 +17,18 @@ $color5: #FEFFFF;
     background-color: #C5CBE3;
 }
 
+.card-wrapper {
+    margin-top: 1%;
+    width: 300px;
+    height: auto;
+}
+
+.match-image-box {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+}
+
 .chat-display {
     position: absolute;
     left: 50%;
@@ -58,18 +70,23 @@ $color5: #FEFFFF;
     overscroll-behavior-y: contain;
 }
 
-.messages li {
+.messages div {
     padding: 10px 30px;
+    width: 100%;
     font-size: 25px;
     overflow-anchor: none;
 }
 
-.messages li:nth-child(odd) {
-    background: #eee;
+.myMessage {
     text-align: right;
 }
 
-.messages > li:last-child {
+.notMyMessage {
+    background: #eee;
+    text-align: left;
+}
+
+.messages > div:last-child {
     padding: 50px 80px;
     background-color: #ffffff;
     overflow-anchor: auto;
