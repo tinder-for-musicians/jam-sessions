@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Profile.scss";
-import Bio from "./Bio";
+import Bio from "./Instruments";
 import ProfileCard from "./ProfileCard";
 import { Button} from 'semantic-ui-react'
 import { storage } from "../Firebase/index";
@@ -26,7 +26,7 @@ const Profile = (props) => {
         axios.get(`/api/profile`)
         .then(res => {
             props.getUser(res.data)
-            console.log(res.data)
+            // console.log(res.data)
             setInstruments(res.data.user_instruments)
             setUsername(res.data.username)
             setFirstName(res.data.first_name)
@@ -74,7 +74,6 @@ const Profile = (props) => {
         console.log(props.user);
         axios.put(`/api/profile/picture`, {profile_pic})
         .then(res => {
-            console.log(res.data)
             props.getUser(res.data)
             
         })
@@ -101,6 +100,7 @@ const Profile = (props) => {
             </div>
             <div>
                 <Button color='gray'>Add instrument</Button>
+                <Button color='gray'>Delete instrument</Button>
             </div>
 
         </div>

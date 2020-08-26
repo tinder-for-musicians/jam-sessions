@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.scss";
-import Search from "./Search";
 import { connect } from 'react-redux';
 import { getProfile } from '../../redux/reducer';
 import { ToastsContainer, ToastsStore } from 'react-toasts';
@@ -20,12 +19,21 @@ const Home = (props) => {
     const [experience, setExperience] = useState('');
     const [distance, setDistance] = useState('');
 
+
     // initial mount effects
     useEffect(() => {
         //bumps back to login after edits /no user info
         axios.get('/auth/checkuser')
         .then()
         .catch(() => props.history.push('/'));
+
+         // DO NOT DELETE OTHERWISE VERA WILL FIND YOU ...
+         // sets store to user profile
+         axios.get('/api/profile')
+         .then(res => {
+             props.getProfile(res.data);
+         })
+         // I AM DEAD SERIOUS
 
         // query all profiles within 15 miles on initial render
         axios.get(`/api/search`)

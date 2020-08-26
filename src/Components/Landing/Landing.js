@@ -77,6 +77,7 @@ class Landing extends Component {
             this.props.history.push('/dash');
         })
         .catch(err => console.log(err));
+
     }
 
     render(){
@@ -141,4 +142,4 @@ class Landing extends Component {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, {getUser})(Landing);
+export default connect(mapStateToProps, {getUser, getProfile})(Landing);
