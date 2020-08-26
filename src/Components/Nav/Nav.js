@@ -9,7 +9,7 @@ import { getProfile, clearUser } from '../../redux/reducer';
 
 const Nav = (props) => {
 
-    const [hidden, setHidden] = useState(true)
+    const [hidden, setHidden] = useState(false)
 
     const toggleDropdown = () => {
         setHidden(!hidden)
@@ -24,6 +24,7 @@ const Nav = (props) => {
             .catch(err => console.log(err));
     }
 
+    console.log(props)
 
     return (
         <div id='nav-wrapper'>
@@ -37,10 +38,6 @@ const Nav = (props) => {
                             <Link to="/profile"><p>Profile</p></Link>
                             <Link to="/matches"><p>Matches</p></Link>
                         </div>
-                        <div className="nav-btn-div"><button className="nav-btn" onClick={handleLogout}>Logout</button></div>
-                    </div>
-                    <div className="nav-photo-div">
-                        <img src={props.profile.profile_pic} alt="user face" />
                     </div>
                 </div>
                 <div className='dropdown' onClick={toggleDropdown}>
@@ -68,10 +65,10 @@ const Nav = (props) => {
                     : null}
 
 
-                {/* <div className="nav-btn-div"><button className="nav-btn" onClick={handleLogout}>Logout</button></div>
-                    <div className="nav-photo-div">
-                        <img src={props.profile.profile_pic} alt="user face"/>
-                    </div> */}
+                <div className="nav-btn-div mobile-display"><button className="nav-btn" onClick={handleLogout}>Logout</button></div>
+                <div className="nav-photo-div mobile-display">
+                    <img src={props.user.profile_pic} alt="user face" className="mobile-display"/>
+                </div> 
             </nav>
         </div>
     );
