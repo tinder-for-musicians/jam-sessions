@@ -1,41 +1,26 @@
 import React, { Component } from 'react'
-import { Grid, Menu, Segment } from 'semantic-ui-react'
+import { Container } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {getUser, getProfile} from '../../redux/reducer';
 import "./Profile.scss";
+import { Button} from 'semantic-ui-react'
 
-class Bio extends Component {
+
+class Instruments extends Component {
   constructor(props){
   super(props)
   this.state= {
-    activeItem: '',
-    instrumentsState: []
+    instrumentsState: [],
   }
 }
 
-componentDidMount() {
-
-}
 
   handleItemClick = (e, { name }) =>  {
   this.setState({ activeItem: name })
   this.mappedInstruments();
 }
 
-  
-
-  handleActiveItem = () => {
-    if (this.state.activeItem === 'bio') {
-      return <p>{this.props.user.bio}</p>;
-    } else if (this.state.activeItem === 'instruments') {
-    return <p>{this.mappedInstruments()}</p>;
-    } else {
-      return ("Nothing works");
-    }
-  }
-
   mappedInstruments = () => {
-
     const instrumentsFromStore = this.props.profile.user_instruments;
 
     const selectedInstruments = instrumentsFromStore.map(((index, key) => {
@@ -44,39 +29,32 @@ componentDidMount() {
       ))
 
     return selectedInstruments;
-    
   }
 
 
 
   render() {
-    const { activeItem } = this.state
-    return (
-      <Grid>
-        <Grid.Column width={4}>
-          <Menu fluid vertical tabular>
-            <Menu.Item
-              name='bio'
-              active={activeItem === 'bio'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name='instruments'
-              active={activeItem === 'instruments'}
-              onClick={this.handleItemClick}
-            />   
-          </Menu>
-        </Grid.Column>
 
-        <Grid.Column stretched width={12}>
-          <Segment>
-            {this.handleActiveItem()}
-          </Segment>
-        </Grid.Column>
-      </Grid>
+    return (
+      <Container> 
+        <div class="wrap">
+	
+          <div class="box one">
+            <div class="date">
+              <h4>Added: 08/26/2020</h4>
+            </div>
+            <h1>Instrument</h1>
+            <div class="poster p1">
+              <h4>5</h4>
+            </div>
+          </div>
+          <Button color='grey' onClick={this.props.deleteInstrument()}>Delete instrument</Button>
+
+        </div>
+      </Container>
     )
   }
 }
 
 const mapStateToProps = reduxState => reduxState;
-export default connect(mapStateToProps, {getUser, getProfile})(Bio);
+export default connect(mapStateToProps, {getUser, getProfile})(Instruments);

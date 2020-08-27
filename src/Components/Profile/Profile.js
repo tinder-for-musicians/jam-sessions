@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Profile.scss";
-import Bio from "./Instruments";
+import Instruments from "./Instruments";
 import ProfileCard from "./ProfileCard";
 import { Button} from 'semantic-ui-react'
 import { storage } from "../Firebase/index";
@@ -22,7 +22,6 @@ const Profile = (props) => {
     }
 
     useEffect(()=> {
-        console.log(props.user)
         axios.get(`/api/profile`)
         .then(res => {
             props.getUser(res.data)
@@ -32,10 +31,58 @@ const Profile = (props) => {
             setFirstName(res.data.first_name)
             setLastName(res.data.last_name)
             setImageAsUrl(res.data.profile_pic)
-            console.log(props.user)
         })
         .catch(err => console.log(err))
     },[])
+
+    // FUNCTION FOR KEEPING THE ARRAY UPDATED //
+
+    // useEffect for the array of instruments ?
+    // originally it was ComponentDidUpdate
+
+
+    // FUNCTION RENDERING INSTRUMENT CARDS //
+
+    const renderInstruments = () => {
+        const mappedInstruments = props.profile.user_instruments;
+
+        if (mappedInstruments !== undefined) {
+            return mappedInstruments.map((index, i) => (
+                <Instruments
+                key={i}
+                instrument={index[0]}
+                proficiency={index[1]}
+                years={index[2]}
+                deleteInstrument={deleteInstrument}
+                />
+            ))}
+    }
+
+    // BUTTONS //
+
+    const deleteInstrument = (instrument) => {
+
+        // axios.delete(`/api/profile/${instrument}`)
+        // .then(res => {
+        //     // props.getProfile(res.data);
+        //     // update the redux array of instruments!
+        // })
+        // .catch(err => console.log(err));
+    }
+
+    // Notes for add:
+    // create instruments array in redux so Profile.js can use it
+    // for rendering and listening to changes
+    // add a function for updating the array in redux
+    // the update array function should make the axios call to db in redux
+    // useEffect/ComponentDidUpdate will listen to changes on redux array and rerender
+
+
+    const addInstrument = (instrument) => {
+        props.getProfile({user_instruments: [...props.user_instruments, instrument]})
+    }
+
+    // FIREBASE FUNCTIONALITY FOR PICTURE UPLOAD //
 
     const handleImageAsFile = (e) => {
         const image = e.target.files[0];
@@ -75,10 +122,11 @@ const Profile = (props) => {
         axios.put(`/api/profile/picture`, {profile_pic})
         .then(res => {
             props.getUser(res.data)
-            
         })
     }
 
+
+    // END OF FIREBASE + PICTURE UPLOAD //
 
     return (
 
@@ -90,17 +138,17 @@ const Profile = (props) => {
                     firstName={firstName}
                     lastName={lastName}
                     username={username} />
-                    <Button color='gray' onClick={uploadPic} >Add Profile Photo</Button>
+                    <Button color='grey' onClick={uploadPic} >Add Profile Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile} />
-                    <Button color='gray' onClick={handleFireBaseUpload}>Submit</Button>
+                    <Button color='grey' onClick={handleFireBaseUpload}>Submit</Button>
+                    <Button color='grey' onClick={addInstrument}>Add Instrument</Button>
                 </div>
             </div>
             <div className="bio-div" >
-                <Bio />
+                {renderInstruments()}
             </div>
             <div>
-                <Button color='gray'>Add instrument</Button>
-                <Button color='gray'>Delete instrument</Button>
+                
             </div>
 
         </div>

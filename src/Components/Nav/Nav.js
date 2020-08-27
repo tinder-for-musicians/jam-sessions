@@ -18,8 +18,8 @@ const Nav = (props) => {
     const handleLogout = () => {
         axios.get('/auth/logout')
             .then(() => {
-                this.props.clearUser();
-                this.props.history.push("/");
+                props.clearUser();
+                props.history.push("/");
             })
             .catch(err => console.log(err));
     }
