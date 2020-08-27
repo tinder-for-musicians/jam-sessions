@@ -36,8 +36,8 @@ class Landing extends Component {
             password: '',
             verPassword: '',
             toggleLocation: false,
-           
-
+            latitude: 0,
+            longitude: 0,
         }
     }
 
@@ -51,7 +51,6 @@ class Landing extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-
     handleToggle = () => {
         this.setState({ registerView: !this.state.registerView })
     }
@@ -60,22 +59,43 @@ class Landing extends Component {
         this.setState({toggleLocation: !this.state.toggleLocation })
     }
         
-    //*enable after coordinates set up*
-    // handleLocation = () => {
-    //     if(this.state.toggleLocation === true){
-    //         axios.put('/api/profile/location')
-    //         .then()
-    //         .catch(err => console.log(err));
-    //     }else{
+    handleLocation = () => {
+        let latitude
+        let longitude
+        if('geolocation' in navigator){
+            console.log('available')
             
-    //     }
-    // }
+        } 
+        navigator.geolocation.getCurrentPosition((position) => {
+            function setLocation(){
+            console.log("Latitude is :", position.coords.latitude);
+            console.log("Longitude is :", position.coords.longitude);
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            
+            this.setState({latitude: latitude, longitude: longitude})
+            }
+            setLocation()
+
+          },
+          (error) => {
+              console.log(`Error occurred. Error code: ${error.code}`)
+          });
+
+        if(this.state.toggleLocation === true){
+            axios.put('/api/profile/coordinates')
+            .then()
+            .catch(err => console.log(err));
+        }else{
+            
+        }
+    }
 
     handleRegister = (e) => {
         e.preventDefault()
-        const { first_name, last_name, username, email, password, verPassword } = this.state;
+        const { first_name, last_name, username, email, password, verPassword, latitude, longitude } = this.state;
         if (password && password === verPassword) {
-            axios.post('/auth/register', { first_name, last_name, username, email, password })
+            axios.post('/auth/register', { first_name, last_name, username, email, password, latitude, longitude })
                 .then(res => {
                     this.props.getUser(res.data);
                     this.props.history.push('/dash');
@@ -100,7 +120,6 @@ class Landing extends Component {
     render() {
         return (
 
-
             <form className='landing-container'>
                     
                 <section className='authentication-info'>
@@ -109,11 +128,12 @@ class Landing extends Component {
                 </p>
                     {this.state.registerView
                         ? (<>
-                            <h3>Register Below</h3>
-                            <div>Share Location</div><Popup content='JamSessions needs to know your location to work correctly. JamSessions uses your location to provide and improve the location services. This information is not used to identify or contact you.'
+                            <h3 className = 'register-text'>Register Below</h3>
+                            <div className = 'loc-text'>Share Location</div><Popup content='JamSessions needs to know your location to work correctly. JamSessions uses your location to provide and improve the location services. This information is not used to identify or contact you.'
                 trigger={<Radio toggle
-                            // onClick = {this.handleToggleLocation()} 
-                            />} />
+                            onClick = {this.handleLocation} 
+                            />}
+                           />
                             <input
                                 value={this.state.first_name}
                                 name='first_name'

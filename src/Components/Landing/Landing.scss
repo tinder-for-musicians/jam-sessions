@@ -45,6 +45,7 @@ $color5: #FEFFFF;
     border-radius: 10px;
     height: 430px;
     width: 400px;
+    box-shadow: -4px 4px 20px $color2;
   }
   
   .logo{
@@ -55,16 +56,33 @@ $color5: #FEFFFF;
     // background: -webkit-linear-gradient($color3, $color1);
     // -webkit-background-clip: text;
     // -webkit-text-fill-color: transparent;
-   color: $color5;
+   color: white;
+   text-shadow: -1px 1px 12px $color2;
+  }
+
+  .register-text{
+    position: relative;
+    bottom: 40px;
+  }
+  .loc-text{
+    position: relative;
+    bottom: 40px;
+  }
+
+  .toggle{
+    position: relative;
+    bottom: 40px;
   }
   
   .authentication-info input {
+    position: relative;
+    bottom: 10px;
     height: 30px;
     width: 300px;
-    background-color: $color4;
-    color: #2E3047;
+    background-color: white;
+    color: black;
     border: none;
-    // margin-bottom: 10px;
+    margin: 1px;
     font-size: 20px;
     border-radius: 2px;
   }
