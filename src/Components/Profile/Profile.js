@@ -56,8 +56,10 @@ const Profile = (props) => {
 
 
 
-    const addInstrument = (instrument) => {
-        props.getProfile({user_instruments: [...props.user_instruments, instrument]})
+    const handleAdd = (instrument) => {
+        // props.addInstrument(...instrument)
+        // updateInstruments(res.data.user_instruments)
+        
     }
 
     // FIREBASE FUNCTIONALITY FOR PICTURE UPLOAD //

@@ -35,7 +35,7 @@ const CardExampleCardProps = (props) => {
         image={props.user.profile_pic}
         header={fullName}
         meta={props.profile.username}
-        description={props.profile.bio}
+        // description={hidden ? (<div></div>) : props.profile.bio}
         
       />
       <Button color='grey' onClick={toggleChange}>Edit bio</Button>
