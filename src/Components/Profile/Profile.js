@@ -136,7 +136,7 @@ const Profile = (props) => {
                     <Button color='grey' onClick={uploadPic} >Add Profile Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile} />
                     <Button color='grey' onClick={handleFireBaseUpload}>Submit</Button>
-                    <Button color='grey' onClick={addInstrument}>Add Instrument</Button>
+                    <Button color='grey' onClick={handleAdd}>Add Instrument</Button>
                     <Button color='grey' onClick={editBio(true)}>Edit Bio</Button>
                 </div>
             </div>
