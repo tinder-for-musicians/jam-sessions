@@ -16,7 +16,7 @@ const Chat = props => {
         if (client) {
             const abortController = new AbortController();
             async function getNewMessage() {
-                await client.on('newMessage', msg => {
+                await client.on(`chatroom-${props.match.params.id}`, msg => {
                     if (msg.chatroom_id === props.match.params.id) {
                         setNewMessage({
                             username: msg.username,
