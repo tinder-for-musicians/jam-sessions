@@ -1,50 +1,103 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import socket from 'socket.io-client';
+import {connect} from 'react-redux';
 
-const client = socket(process.env.REACT_APP_IO_PORT);
-
-const Chat = () => {
+const Chat = props => {
+    const [client] = useState(() => {
+        const initialState = socket(process.env.REACT_APP_IO_PORT);
+        return initialState;
+    });
     const [chatMessage, setChatMessage] = useState('');
-    const [newMessage, setNewMessage] = useState('');
+    const [newMessage, setNewMessage] = useState({});
     const [listMessages, setListMessages] = useState([]);
     const [mappedMessages, setMappedMessages] = useState([]);
 
     useEffect(() => {
-        client.on('newMessage', msg => {
-            console.log(msg);
-            setNewMessage(msg);
-        });
+        if (client) {
+            const abortController = new AbortController();
+            async function getNewMessage() {
+                await client.on('newMessage', msg => {
+                    if (msg.chatroom_id === props.match.params.id) {
+                        setNewMessage({
+                            username: msg.username,
+                            message: msg.message
+                        })
+                    }
+                });
+                return function cleanup() {
+                    abortController.abort();
+                }
+            }
+            getNewMessage();
+        }
     }, []);
 
     useEffect(() => {
-        console.log(newMessage, listMessages);
-        setListMessages([...listMessages, newMessage]);
+        if (newMessage.message) {
+            setListMessages([...listMessages, newMessage]);
+        }
     }, [newMessage]);
 
     useEffect(() => {
-        setMappedMessages(listMessages.map((element, index) => (
-          <li key={index}>
-            {element}
-          </li>
-        )));
-      }, [listMessages]);
-      
-    const send = () => {
-        client.emit('chatMessage', chatMessage);
+        if (listMessages !== []) {
+            setMappedMessages(listMessages.map((element, index) => {
+                if (element.username === props.user.username) {
+                    console.log(element);
+                    return (
+                        <div className='myMessage' key={index}>
+                            <li>
+                                <p>Me:</p>
+                                <p>{element.message}</p>
+                            </li>
+                        </div>
+                    )
+                }
+                else {
+                    return (
+                        <div className='notMyMessage' key={index}>
+                            <li>
+                                <p>{element.username}:</p>
+                                <p>{element.message}</p>
+                            </li>
+                        </div>
+                    )
+                }               
+            }))       
+        }
+    }, [listMessages]);
+
+    const send = async () => {
+        const combined = {
+            chatroom_id: props.match.params.id,
+            username: props.user.username,
+            message: chatMessage
+        };
+        await client.emit('chatMessage', combined);
         setChatMessage('');
     }
 
     return (
-        <div className='chat-display'>
-            <ul className='messages'>
-                {mappedMessages}
-            </ul>
-            <section className='create-message-section'>
-                <input className='message-input' value={chatMessage} onChange={e => setChatMessage(e.target.value)} />
-                <button onClick={send}>Send</button>
-            </section>
-        </div>
+            <div className='chat-display'>
+                <ul className='messages'>
+                    {mappedMessages
+                    ?<div>{mappedMessages}</div>
+                    :null
+                    }
+                    <div></div>
+                </ul>
+                <section className='create-message-section'>
+                    <input className='message-input' value={chatMessage} onChange={e => setChatMessage(e.target.value)} />
+                    <button onClick={send}>Send</button>
+                </section>
+            </div>
     )
 }
 
-export default Chat;
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    };
+}
+
+
+export default connect(mapStateToProps)(Chat);

@@ -8,6 +8,7 @@ const authCtrl = require('./controllers/authController');
 const profileCtrl = require('./controllers/profileController');
 const searchCtrl = require('./controllers/searchController');
 const matchCtrl = require('./controllers/matchController');
+const messageCtrl = require('./controllers/messageController');
 
 const {SERVER_PORT, IO_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
@@ -68,6 +69,9 @@ app.post('/api/matches', matchCtrl.addMatchRequest);
 app.put('/api/matches/decline', matchCtrl.declineMatchRequest);
 app.put('/api/matches/block', matchCtrl.blockMatch);
 app.delete('/api/matches', matchCtrl.removeMatch);
+
+app.get('/api/messages/:chatroom_id', messageCtrl.getMessages);
+app.post('/api/messages', messageCtrl.createMessage);
 
 io.listen(IO_PORT);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
