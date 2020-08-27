@@ -74,7 +74,9 @@ module.exports = {
     },
 
     deleteInstrument: async (req, res) => {
-        const {id, instrument} = req.body;
+        const id = req.session.user.user_id;
+        console.log(id, req.body)
+        const {instrument} = req.body;
         const db = req.app.get('db');
         
         await db.profile.delete_instrument([id, instrument])

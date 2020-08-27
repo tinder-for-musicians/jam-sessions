@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./Home.scss";
 import { connect } from 'react-redux';
-import { getProfile } from '../../redux/reducer';
+import { getProfile, updateInstruments } from '../../redux/reducer';
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import { Dropdown } from 'semantic-ui-react'
 import axios from 'axios';
@@ -32,6 +32,7 @@ const Home = (props) => {
          axios.get('/api/profile')
          .then(res => {
              props.getProfile(res.data);
+             props.updateInstruments(res.data.user_instruments);
          })
          // I AM DEAD SERIOUS
 
@@ -241,4 +242,4 @@ const Home = (props) => {
 
 const mapStateToProps = reduxState => reduxState;
 
-export default connect(mapStateToProps, { getProfile })(Home);
+export default connect(mapStateToProps, { getProfile, updateInstruments })(Home);
