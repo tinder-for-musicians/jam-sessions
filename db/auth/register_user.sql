@@ -1,7 +1,7 @@
 INSERT INTO users
-(first_name, last_name, username, email, password)
+(first_name, last_name, username, email, password, loc_latitude, loc_longitude)
 VALUES
-($1, $2, $3, $4, $5)
+($1, $2, $3, $4, $5, $6, $7)
 ;
 
 SELECT user_id, first_name, last_name, username, profile_pic, loc_latitude, loc_longitude
