@@ -25,7 +25,9 @@ componentDidMount() {
   
 
   handleActiveItem = () => {
+    console.log(this.props.user)
     if (this.state.activeItem === 'bio') {
+      console.log(this.props.user)
       return <p>{this.props.user.bio}</p>;
     } else if (this.state.activeItem === 'instruments') {
     return <p>{this.mappedInstruments()}</p>;
@@ -55,14 +57,14 @@ componentDidMount() {
       <Grid>
         <Grid.Column width={4}>
           <Menu fluid vertical tabular>
-            <Menu.Item
+            {/* <Menu.Item
               name='bio'
               active={activeItem === 'bio'}
               onClick={this.handleItemClick}
-            />
+            /> */}
             <Menu.Item
-              name='instruments'
-              active={activeItem === 'instruments'}
+              name='instrument'
+              active={activeItem === 'instrument'}
               onClick={this.handleItemClick}
             />   
           </Menu>
@@ -71,6 +73,7 @@ componentDidMount() {
         <Grid.Column stretched width={12}>
           <Segment>
             {this.handleActiveItem()}
+            {/* {this.mappedInstruments()} */}
           </Segment>
         </Grid.Column>
       </Grid>
