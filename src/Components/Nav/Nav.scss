@@ -51,8 +51,10 @@ $color5: #45A29E;
         align-content: center;
         align-items: center;
         margin: 10px;
-        color: $color3;
-        border-radius: 4px;
+        color: white;
+        border-radius: 3px;
+        border: none;
+        font-size: 18px;
         background: $color5;
         width: 100px;
         height: 40px;
@@ -105,6 +107,9 @@ a {
 .dropdown{
     display: none;
 }
+.parent-menu{
+    display: none;
+}
 
 
 // MOBILE NAVBAR STYLING //
@@ -112,16 +117,16 @@ a {
 @media (max-width: 785px) {
 
     #navbar {
+        background-color: white;
     div.desktop-nav > div.nav-links {
         display: none;
     }
-}
-
+    }
+   
     #navbar > div.mobile-display {
         display: none;
     }
 
-        
     .header-container {
         display: flex;
         flex-direction: row;
@@ -132,11 +137,18 @@ a {
     }
 
     .parent-menu{
+        z-index: 100;
         display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
         flex-direction: column;
-        background-color: black;
-        height: 200px;
-
+        background-color: white;
+        height: 260px;
+        width: 170px;
+        top: 70px;
+        border-radius: 3px;
+        box-shadow: 0px 3px 15px $color2
     }
 
     .mobile-menu{
@@ -155,8 +167,8 @@ a {
     .dropdown {
         display: flex;
         color: black;
-        z-index: 1;
-
+        background-color: white;
+        // z-index: 1;
         position: absolute;
         font-size: 40px;
         cursor: pointer;
@@ -166,8 +178,8 @@ a {
 
     .nav-links{
         
-        // display: flex;
-        // flex-direction: column;
+        display: flex;
+        flex-direction: column;
         // justify-content: space-evenly;
         // position: relative;
         //   color: black;
