@@ -16,7 +16,7 @@ module.exports = {
         const {chatroom_id, message} = req.body;
         const db = req.app.get('db');
 
-        await db.messages.get_messages([user_id, chatroom_id, message])
+        await db.messages.create_message([user_id, chatroom_id, message])
             .then(() => {
                 return res.sendStatus(202);
             })

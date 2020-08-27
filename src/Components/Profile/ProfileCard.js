@@ -1,5 +1,5 @@
-import React  from 'react'
-import { Card, Icon } from 'semantic-ui-react'
+import React, {useState}  from 'react'
+import { Card, Icon, Button } from 'semantic-ui-react'
 import {getUser,getProfile} from "../../redux/reducer";
 import {connect} from 'react-redux';
 
@@ -12,16 +12,34 @@ import {connect} from 'react-redux';
 // )
 
 const CardExampleCardProps = (props) => {
+
+  const [hidden, setHidden] = useState(false)
+
+  const toggleChange = () => {
+    setHidden(!hidden)
+}
+
   const fullName = `${props.firstName} ${props.lastName}`
 
+  const editBio = () => {
+      return <div>
+        <textarea></textarea>
+        <Button>Submit</Button>
+        </div>
+    
+  }
+
   return(
-  <Card
-    image={props.user.profile_pic}
-    header={fullName}
-    meta={props.username}
-    description={props.profile.bio}
-    // extra={extra}
-  />
+    <div>
+      <Card
+        image={props.user.profile_pic}
+        header={fullName}
+        meta={props.profile.username}
+        // description={hidden ? (<div></div>) : props.profile.bio}
+        
+      />
+      <Button color='grey' onClick={toggleChange}>Edit bio</Button>
+  </div>
   )
 }
 
