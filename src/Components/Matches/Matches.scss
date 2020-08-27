@@ -93,17 +93,9 @@ $color5: #FEFFFF;
     height: 93.25%;
     margin: 0; 
     padding: 0;
-    // overflow: auto;
-    // display: flex;
-    // flex-direction: column-reverse;
     overflow-y: scroll;
     overscroll-behavior-y: contain;
 }
-
-// .unreverse-map {
-//     display: flex;
-//     flex-direction: column-reverse;
-// }
 
 .messages div {
     padding: 0 30px;

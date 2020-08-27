@@ -63,12 +63,6 @@ const Chat = props => {
                     )
                 }               
             })) 
-            // let element = document.getElementsByClassName('messages');
-            // console.log(element);
-            // let isScrolledToBottom = element.scrollHeight - element.clientHeight <= element.scrollTop + 1;
-            // if (isScrolledToBottom) {
-            //     element.scrollTop = element.scrollHeight - element.clientHeight;
-            // }
         }
     }, [listMessages]);
 
