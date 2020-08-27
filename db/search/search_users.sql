@@ -10,13 +10,13 @@ FROM users AS u
 LEFT JOIN profile AS p
     ON u.user_id = p.user_id
 LEFT JOIN matches AS m
-    ON u.user_id = m.user_id
+    ON u.user_id = m.match_id
 
 -- search filter conditions
 WHERE
     -- exclude user's own self and current matches from search list
     u.user_id != $1 
-    AND (m.user_id IS NULL OR m.user_id != $1 OR (m.match_id = $1 AND NOT m.is_matched))
+    AND u.user_id NOT IN (SELECT match_id FROM matches WHERE user_id = $1 AND is_matched)
 
     -- 1) match on distance from user
     AND    

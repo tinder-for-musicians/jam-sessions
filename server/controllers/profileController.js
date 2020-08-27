@@ -84,5 +84,17 @@ module.exports = {
                 res.sendStatus(202);
             })
             .catch(err => res.status(400).send(err));
+    },
+
+    updateLatitudeLongitude: async (req, res) => {
+        const id = req.session.user.user_id;
+        const {latitude, longitude} = req.body;
+        const db = req.app.get('db');
+
+        await db.profile.update_latitude_longitude([id, latitude, longitude])
+            .then(response => {
+                return res.status(202).send(response[0]);
+            })
+            .catch(err => res.status(400).send(err));
     }
 }
