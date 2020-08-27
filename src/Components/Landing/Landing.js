@@ -36,8 +36,6 @@ class Landing extends Component {
             password: '',
             verPassword: '',
             toggleLocation: false,
-           
-
         }
     }
 
@@ -50,7 +48,6 @@ class Landing extends Component {
     handleInput = (event) => {
         this.setState({ [event.target.name]: event.target.value })
     }
-
 
     handleToggle = () => {
         this.setState({ registerView: !this.state.registerView })
@@ -99,7 +96,6 @@ class Landing extends Component {
 
     render() {
         return (
-
 
             <form className='landing-container'>
                     
