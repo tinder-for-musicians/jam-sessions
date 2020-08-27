@@ -1,28 +1,53 @@
 import React, { Component } from 'react'
 import { Grid, Menu, Segment } from 'semantic-ui-react'
 import {connect} from 'react-redux';
-import {getUser} from '../../redux/reducer';
+import {getUser, getProfile} from '../../redux/reducer';
 import "./Profile.scss";
 
 class Bio extends Component {
   constructor(props){
   super(props)
-  this.state={
-    activeItem: ''
+  this.state= {
+    activeItem: '',
+    instrumentsState: []
   }
-  }
+}
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+componentDidMount() {
+
+}
+
+  handleItemClick = (e, { name }) =>  {
+  this.setState({ activeItem: name })
+  this.mappedInstruments();
+}
+
+  
 
   handleActiveItem = () => {
     if (this.state.activeItem === 'bio') {
       return <p>{this.props.user.bio}</p>;
     } else if (this.state.activeItem === 'instruments') {
-      return <p>{this.props.user.user_instruments}</p>;
+    return <p>{this.mappedInstruments()}</p>;
     } else {
       return ("Nothing works");
     }
   }
+
+  mappedInstruments = () => {
+
+    const instrumentsFromStore = this.props.profile.user_instruments;
+
+    const selectedInstruments = instrumentsFromStore.map(((index, key) => {
+          return <li key={key}>{index[0]}</li>;
+        }
+      ))
+
+    return selectedInstruments;
+    
+  }
+
+
 
   render() {
     const { activeItem } = this.state
@@ -39,17 +64,7 @@ class Bio extends Component {
               name='instruments'
               active={activeItem === 'instruments'}
               onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name='companies'
-              active={activeItem === 'companies'}
-              onClick={this.handleItemClick}
-            />
-            <Menu.Item
-              name='links'
-              active={activeItem === 'links'}
-              onClick={this.handleItemClick}
-            />
+            />   
           </Menu>
         </Grid.Column>
 
@@ -64,4 +79,4 @@ class Bio extends Component {
 }
 
 const mapStateToProps = reduxState => reduxState;
-export default connect(mapStateToProps, {getUser})(Bio);
+export default connect(mapStateToProps, {getUser, getProfile})(Bio);

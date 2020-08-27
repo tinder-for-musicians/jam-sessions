@@ -24,7 +24,6 @@ const Nav = (props) => {
             .catch(err => console.log(err));
     }
 
-    console.log(props)
 
     return (
         <div id='nav-wrapper'>
@@ -67,7 +66,7 @@ const Nav = (props) => {
 
                 <div className="nav-btn-div mobile-display"><button className="nav-btn" onClick={handleLogout}>Logout</button></div>
                 <div className="nav-photo-div mobile-display">
-                    <img src={props.user.profile_pic} alt="user face" className="mobile-display"/>
+                    <img src={props.profile.profile_pic} alt="user face" className="mobile-display"/>
                 </div> 
             </nav>
         </div>

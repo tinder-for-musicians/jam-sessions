@@ -6,6 +6,10 @@ SELECT
     , u.profile_pic
     , u.bio
     , u.user_id
+    , u.password
+    , u.loc_latitude
+    , u.loc_longitude
+    , u.username
     , CASE
         WHEN EXISTS(SELECT * FROM profile WHERE user_id = $1)
             THEN ARRAY_AGG(
