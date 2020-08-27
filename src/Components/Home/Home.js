@@ -18,6 +18,7 @@ const Home = (props) => {
     const [level, setLevel] = useState('');
     const [experience, setExperience] = useState('');
     const [distance, setDistance] = useState('');
+    const [isMatched, setIsMatched] = useState(true); // N.B. resets to false on intial render
 
 
     // initial mount effects
@@ -81,9 +82,22 @@ const Home = (props) => {
         }
     }
 
-    const handleClick = () => {
-        // TO-DO
+    const handleClickMatch = (match_id) => {
+        axios.put('/api/matches', { match_id })
+        .then()
+        .catch(err => console.log(err));
+
+        handleSearch(); // set new filtered matches post-match
+        setIsMatched(true);
     }
+
+    // update filteredMatches after a match is clicked -- resets to false on initial render
+    useEffect(() => {
+        if(isMatched) {
+            handleSearch(); // display new filtered matches post-match
+            setIsMatched(false);
+        }
+    }, [filteredMatches, isMatched]);
 
     // if no fields populated, re-render default search (e.g., after Reset)
     useEffect(() => {
@@ -101,8 +115,8 @@ const Home = (props) => {
             <div key={user_id}>
                 <span
                     onClick={() => {
-                        handleClick();
-                        ToastsStore.success("Matched!")
+                        handleClickMatch(user_id);
+                        ToastsStore.success("Matched!");
                     }}
                     className='tooltip'>
                     <ToastsContainer store={ToastsStore} />
@@ -121,7 +135,7 @@ const Home = (props) => {
         )
     })
 
-    // populate dropdown options via mapping
+    // generate dropdown options via mapping
     const mappedInstrumentOptions = [{
         key: 'select instrument',
         text: 'select instrument',
