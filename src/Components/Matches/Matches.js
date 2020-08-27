@@ -33,16 +33,16 @@ const Matches = () => {
                 const mappedInstruments = match.user_instruments.map((instrument, index) => {
                     console.log(instrument);
                     return <div key={index}>
-                        <ul>{instrument[0]}
+                        <ul className='instrument-list'>{instrument[0]}
                             <li>{instrument[1]}</li>
                             <li>{instrument[2]}</li>
                         </ul>
                     </div>
                 });
                 return <div key={index} className="card-wrapper">
-                    <Grid.Column>
+                    <Grid.Column className='card-box'>
                         <Link to={`/chat/${match.chatroom_id}`}><Card >
-                            <div className='match-image-box'><Image className='match-image' src={match.profile_pic} wrapped ui={false} /></div>
+                            <Image className='match-image' src={match.profile_pic} wrapped ui={false} />
                             <Card.Content>
                                 <Card.Header>{match.username}</Card.Header>
                                 <Card.Meta>
@@ -57,7 +57,6 @@ const Matches = () => {
                                     <Icon name='music' />
                                     Instruments
                                     {mappedInstruments}
-                                    {/* <img src={require("../icons/accordion.png")} alt="banjo" /> */}
                                 </a>
                             </Card.Content>
                         </Card></Link>

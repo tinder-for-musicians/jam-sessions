@@ -46,8 +46,8 @@ const Chat = props => {
                     return (
                         <div className='myMessage' key={index}>
                             <li>
-                                <p>Me:</p>
-                                <p>{element.message}</p>
+                                <p className='chat-username'>Me:</p>
+                                <p className='message-display'>{element.message}</p>
                             </li>
                         </div>
                     )
@@ -56,13 +56,13 @@ const Chat = props => {
                     return (
                         <div className='notMyMessage' key={index}>
                             <li>
-                                <p>{element.username}:</p>
-                                <p>{element.message}</p>
+                                <p className='chat-username'>:{element.username}</p>
+                                <p className='message-display-2'>{element.message}</p>
                             </li>
                         </div>
                     )
                 }               
-            }))       
+            })) 
         }
     }, [listMessages]);
 
@@ -80,13 +80,13 @@ const Chat = props => {
             <div className='chat-display'>
                 <ul className='messages'>
                     {mappedMessages
-                    ?<div>{mappedMessages}</div>
+                    ?<div className='unreverse-map'>{mappedMessages}</div>
                     :null
                     }
                     <div></div>
                 </ul>
                 <section className='create-message-section'>
-                    <input className='message-input' value={chatMessage} onChange={e => setChatMessage(e.target.value)} />
+                    <input className='message-input' maxLength='250' value={chatMessage} onChange={e => setChatMessage(e.target.value)} />
                     <button onClick={send}>Send</button>
                 </section>
             </div>
