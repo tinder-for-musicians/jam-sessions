@@ -33,7 +33,7 @@ massive({
 io.on('connection', (client) => {
     console.log('A user has connected');
     client.on('chatMessage', (msg) => {
-        io.emit('newMessage', msg);
+        io.emit(`chatroom-${msg.chatroom_id}`, msg);
     });
     client.on('disconnect', () => {
         console.log('User has disconnected');
@@ -44,10 +44,6 @@ app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
 app.get('/auth/checkuser', authCtrl.checkUser);
-
-// app.get('/api/instruments', instrCtrl.getInstruments);
-// app.get('/api/instruments', instrCtrl.getAttributes);
-
 
 app.get('/api/search', searchCtrl.getUsers);
 app.get('/api/search/attributes', searchCtrl.getAttributes);
