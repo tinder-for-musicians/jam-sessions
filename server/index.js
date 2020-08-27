@@ -63,12 +63,12 @@ app.put('/api/profile/location', profileCtrl.updateLocation);
 app.put('/api/profile/instrument', profileCtrl.updateInstrument);
 app.delete('/api/profile/instrument', profileCtrl.deleteInstrument);
 
-app.get('/api/matches/requests', matchCtrl.getMyMatchRequests);
 app.get('/api/matches', matchCtrl.getMyMatches);
-app.post('/api/matches', matchCtrl.addMatchRequest);
-app.put('/api/matches/decline', matchCtrl.declineMatchRequest);
-app.put('/api/matches/block', matchCtrl.blockMatch);
+app.put('/api/matches', matchCtrl.addMatch);
 app.delete('/api/matches', matchCtrl.removeMatch);
+app.put('/api/matches/block', matchCtrl.blockMatch);
+app.get('/api/matches/requests', matchCtrl.getMyMatchRequests);
+app.put('/api/matches/decline', matchCtrl.declineMatchRequest);
 
 app.get('/api/messages/:chatroom_id', messageCtrl.getMessages);
 app.post('/api/messages', messageCtrl.createMessage);
