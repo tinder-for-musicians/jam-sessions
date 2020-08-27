@@ -55,6 +55,7 @@ app.put('/api/profile/picture', profileCtrl.updateProfilePic);
 app.put('/api/profile/name', profileCtrl.updateName);
 app.put('/api/profile/bio', profileCtrl.updateBio);
 app.put('/api/profile/location', profileCtrl.updateLocation);
+app.put('/api/profile/coordinates', profileCtrl.updateLatitudeLongitude);
 app.put('/api/profile/instrument', profileCtrl.updateInstrument);
 app.delete('/api/profile/instrument', profileCtrl.deleteInstrument);
 
