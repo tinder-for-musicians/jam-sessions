@@ -105,11 +105,12 @@ class Landing extends Component {
                 </p>
                     {this.state.registerView
                         ? (<>
-                            <h3>Register Below</h3>
-                            <div>Share Location</div><Popup content='JamSessions needs to know your location to work correctly. JamSessions uses your location to provide and improve the location services. This information is not used to identify or contact you.'
+                            <h3 className = 'register-text'>Register Below</h3>
+                            <div className = 'loc-text'>Share Location</div><Popup content='JamSessions needs to know your location to work correctly. JamSessions uses your location to provide and improve the location services. This information is not used to identify or contact you.'
                 trigger={<Radio toggle
                             // onClick = {this.handleToggleLocation()} 
-                            />} />
+                            />}
+                           />
                             <input
                                 value={this.state.first_name}
                                 name='first_name'
