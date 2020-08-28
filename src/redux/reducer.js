@@ -42,11 +42,10 @@ export function updateInstruments (instruments) {
     }
 }
 
-export function addInstrument (instrument) {
+export function addInstrument (instrument, level, experience) {
     return {
         type: ADD_INSTRUMENT,
-        payload: axios.post()
-        // ADD ENDPOINT FOR DB
+        payload: axios.post('/api/profile/instrument', {instrument, level, experience})
     }
 }
 
