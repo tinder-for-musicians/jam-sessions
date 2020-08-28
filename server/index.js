@@ -32,6 +32,8 @@ massive({
     console.log('Database Connected');
 }).catch(err => console.log(err));
 
+io.origins('*:*');
+
 io.on('connection', (client) => {
     console.log('A user has connected');
     client.on('chatMessage', (msg) => {
