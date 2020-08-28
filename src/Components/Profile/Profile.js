@@ -6,6 +6,7 @@ import { Button, Dropdown} from 'semantic-ui-react'
 import { storage } from "../Firebase/index";
 import {connect} from 'react-redux';
 import {getUser, updateInstruments, addInstrument} from '../../redux/reducer';
+import { ToastsContainer, ToastsStore } from 'react-toasts';
 import axios from 'axios';
 
 const Profile = (props) => {
@@ -30,6 +31,7 @@ const Profile = (props) => {
      // delete button
      const deleteInstrument = (instrument) => {
         console.log("the button is working")
+        ToastsStore.success("Deleted!");
         // const instrument = props.instruments;
         console.log(instrument)
 
@@ -72,6 +74,8 @@ const Profile = (props) => {
     const sortedInstruments = instruments.map((index, i) => 
         {
             return (
+                <div>
+                <ToastsContainer store={ToastsStore} />
                 <Instruments
                 key={i}
                 instrument={index[0]}
@@ -79,6 +83,7 @@ const Profile = (props) => {
                 level={index[2]}
                 deleteInstrument={deleteInstrument}
                 />
+                </div>
             )
         }
     )
@@ -218,9 +223,9 @@ const Profile = (props) => {
                     lastName={props.profile.last_name}
                     username={props.profile.username}
                     editBio={editBio} />
-                    <Button color='grey' onClick={uploadPic} >Add Profile Photo</Button>
+                    <Button color='grey' onClick={uploadPic} >Choose Photo</Button>
                     <input type="file" hidden id="selectImg" onChange={handleImageAsFile} />
-                    <Button color='grey' onClick={handleFireBaseUpload}>Submit</Button>
+                    <Button color='grey' onClick={handleFireBaseUpload}>Submit Photo</Button>
                     {!view 
                     ? 
                     (<Button color='grey' onClick={() => setView(!view)}>Add Instrument</Button>)
