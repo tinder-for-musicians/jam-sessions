@@ -60,8 +60,8 @@ class Landing extends Component {
     }
         
     handleLocation = () => {
-        let latitude
-        let longitude
+        let userLatitude = 0;
+        let userLongitude = 0;
         if('geolocation' in navigator){
             console.log('available')
             
@@ -70,13 +70,11 @@ class Landing extends Component {
             function setLocation(){
             console.log("Latitude is :", position.coords.latitude);
             console.log("Longitude is :", position.coords.longitude);
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            
-            this.setState({latitude: latitude, longitude: longitude})
+            userLatitude = position.coords.latitude;
+            userLongitude = position.coords.longitude;
             }
             setLocation()
-
+            this.setState({latitude: userLatitude, longitude: userLongitude});
           },
           (error) => {
               console.log(`Error occurred. Error code: ${error.code}`)
