@@ -10,6 +10,8 @@ const searchCtrl = require('./controllers/searchController');
 const matchCtrl = require('./controllers/matchController');
 const messageCtrl = require('./controllers/messageController');
 
+const path = require('path');
+
 const {SERVER_PORT, IO_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
@@ -42,6 +44,9 @@ io.on('connection', (client) => {
     });
 });
 
+// build configuration (client redirect)
+app.use(express.static(__dirname + '/../build'));
+
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout);
@@ -70,6 +75,11 @@ app.put('/api/matches/decline', matchCtrl.declineMatchRequest);
 
 app.get('/api/messages/:chatroom_id', messageCtrl.getMessages);
 app.post('/api/messages', messageCtrl.createMessage);
+
+// build configuration (client redirect)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+});
 
 io.listen(IO_PORT);
 app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
