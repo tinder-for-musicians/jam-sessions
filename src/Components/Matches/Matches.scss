@@ -51,13 +51,13 @@ $color5: #FEFFFF;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    background-color: $color2;
-    width: 50vw;
+    background-color: $color5;
+    width: 75vw;
     height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 5px solid #3a3a3a;
+    box-shadow: 0px 3px 15px $color1;
     border-radius: 15px;
     margin-top: 1%;
 }
@@ -66,24 +66,42 @@ $color5: #FEFFFF;
     padding: 3px; 
     position: fixed; 
     bottom: 0; 
-    width: 100%;
     padding: 10px; 
     width: 90%;
     font-size: 25px;
     border: none;
+    background-color: $color4;
     border-bottom-left-radius: 15px;
+    transition: .4s;
+}
+
+.message-input:hover {
+    box-shadow: 0px 3px 15px $color1;
+}
+
+.message-input:focus {
+    box-shadow: 0px 3px 15px $color1;
 }
 
 .create-message-section button {
     position: fixed;
     width: 10%; 
-    background: rgb(130, 224, 255); 
+    background: #59d8d2; 
     border: none; 
-    padding: 10px 12px;
+    padding: 13px 12px;
     right: 0;
     bottom: 0px;
-    font-size: 25px;
+    font-size: 20px;
     border-bottom-right-radius: 15px;
+    transition: .2s;
+}
+
+.create-message-section button:hover {
+    background-color: $color3;
+}
+
+.create-message-section button:active {
+    background-color: $color2;
 }
 
 .messages {
@@ -122,7 +140,7 @@ $color5: #FEFFFF;
     max-width: 50%;
     height: auto;
     background-color: $color4;
-    border: 2px solid $color1;
+    border: 1px solid $color1;
     border-radius: 30px;
     padding: 10px;
 }
@@ -148,13 +166,13 @@ $color5: #FEFFFF;
     min-width: 10%;
     max-width: 50%;
     height: auto;
-    background-color: $color3;
-    border: 2px solid $color1;
+    background-color: #8eebe6;
+    border: 1px solid $color1;
     border-radius: 30px;
     padding: 10px;
 }
 .chat-username {
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .messages > div:last-child {
