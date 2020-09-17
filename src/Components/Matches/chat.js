@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 const Chat = props => {
     const [client] = useState(() => {
-        const initialState = socket('127.0.0.1:5050');
+        const initialState = socket(process.env.REACT_APP_IO_PORT);
         return initialState;
     });
     const [chatMessage, setChatMessage] = useState('');
