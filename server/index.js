@@ -8,19 +8,12 @@ const profileCtrl = require('./controllers/profileController');
 const searchCtrl = require('./controllers/searchController');
 const matchCtrl = require('./controllers/matchController');
 const messageCtrl = require('./controllers/messageController');
-const http = require('http');
-const cors = require('cors');
 
-// const path = require('path');
+const path = require('path');
 
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
-const server = http.createServer(app);
-const io = require("socket.io")(server);
-
-app.use(cors());
-// app.options('*:*', cors());
 
 app.use(express.json());
 
@@ -38,18 +31,8 @@ massive({
     console.log('Database Connected');
 }).catch(err => console.log(err));
 
-io.on('connection', (client) => {
-    console.log('A user has connected');
-    client.on('chatMessage', (msg) => {
-        io.emit(`chatroom-${msg.chatroom_id}`, msg);
-    });
-    client.on('disconnect', () => {
-        console.log('User has disconnected');
-    });
-});
-
 // build configuration (client redirect)
-// app.use(express.static(__dirname + '/../build'));
+app.use(express.static(__dirname + '/../build'));
 
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
@@ -81,9 +64,20 @@ app.get('/api/messages/:chatroom_id', messageCtrl.getMessages);
 app.post('/api/messages', messageCtrl.createMessage);
 
 // build configuration (client redirect)
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../build/index.html'))
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'))
+});
 
-// io.listen(4040);
-app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
+const server = app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
+
+const io = require("socket.io").listen(server);
+
+io.on('connection', (client) => {
+    console.log('A user has connected');
+    client.on('chatMessage', (msg) => {
+        io.emit(`chatroom-${msg.chatroom_id}`, msg);
+    });
+    client.on('disconnect', () => {
+        console.log('User has disconnected');
+    });
+});
