@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
-const io = require('socket.io')();
 const session = require('express-session');
 const authCtrl = require('./controllers/authController');
 // const instrCtrl = require('./controllers/instrController');
@@ -12,7 +11,7 @@ const messageCtrl = require('./controllers/messageController');
 
 const path = require('path');
 
-const {SERVER_PORT, IO_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 
 const app = express();
 
@@ -31,18 +30,6 @@ massive({
     app.set('db', db);
     console.log('Database Connected');
 }).catch(err => console.log(err));
-
-io.origins('*:*');
-
-io.on('connection', (client) => {
-    console.log('A user has connected');
-    client.on('chatMessage', (msg) => {
-        io.emit(`chatroom-${msg.chatroom_id}`, msg);
-    });
-    client.on('disconnect', () => {
-        console.log('User has disconnected');
-    });
-});
 
 // build configuration (client redirect)
 app.use(express.static(__dirname + '/../build'));
@@ -81,5 +68,16 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'))
 });
 
-io.listen(IO_PORT);
-app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
+const server = app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
+
+const io = require("socket.io").listen(server);
+
+io.on('connection', (client) => {
+    console.log('A user has connected');
+    client.on('chatMessage', (msg) => {
+        io.emit(`chatroom-${msg.chatroom_id}`, msg);
+    });
+    client.on('disconnect', () => {
+        console.log('User has disconnected');
+    });
+});
